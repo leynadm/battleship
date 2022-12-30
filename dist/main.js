@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("console.log(\"mecc\");\n\n//# sourceURL=webpack://battleship/./src/index.js?");
+eval("\n/* \nimport Ship from \"./ship\"\nimport Gameboard from \"./gameboard\";\n\nconst gameInstance = Gameboard()\n\nconsole.log(gameInstance)\ngameInstance.placeShip(4,3,4,\"horizontal\")\ngameInstance.placeShip(5,4,9,\"horizontal\")\ngameInstance.receiveAttack(2,2)\n\n */\n\n//# sourceURL=webpack://battleship/./src/index.js?");
 
 /***/ })
 
