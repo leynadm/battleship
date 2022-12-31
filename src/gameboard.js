@@ -1,6 +1,7 @@
 const Ship = require("./ship");
 
 function Gameboard(playerName) {
+  
   const ships = [];
   const missedAttacks = [];
 
@@ -24,7 +25,12 @@ function Gameboard(playerName) {
     });
   }
 
+  function checkFleetStatus(){
+
+  }
+
   return {
+    playerName,
     ships,
     placeShip,
     receiveAttack,

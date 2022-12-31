@@ -1,6 +1,6 @@
 const Gameboard = require("./gameboard");
 
-test.only("Receive attack and increase the hit count", () => {
+test("Receive attack and increase the hit count", () => {
   const gameboard = Gameboard();
 
   gameboard.placeShip(5, 0, 0, "horizontal");

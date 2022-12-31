@@ -1,8 +1,19 @@
 const Player = require("./player");
+ 
+test("Create computer instance", () =>{
 
-test("Creating one player instace", () =>{
+    const player = Player()
+    const computerPlayerGameboard = player.createComputerPlayer()
 
-    expect(Player("Daniel")).toBe("Daniel")
+    expect(computerPlayerGameboard).toBeDefined()
+    expect(computerPlayerGameboard.playerName).toBe('Computer')
 })
 
+test("Create player instance", () =>{
+
+    const player = Player()
+    const playerGameboard = player.createPlayer("Daniel");
+    expect(playerGameboard).toBeDefined()
+    expect(playerGameboard.playerName).toBe('Daniel')
+})
 

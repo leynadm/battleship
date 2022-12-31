@@ -1,14 +1,21 @@
-const Gameboard = require("./gameboard"); 
+const Gameboard = require("./gameboard");
 
-function Player(playerName) {
-    
-    function createComputerPlayer(playerName){
+function Player() {
 
-        const computerGameboard = Gameboard(playerName)
-    }
+  function createComputerPlayer() {
+    const computerGameboard = Gameboard("Computer");
+    return computerGameboard
+  }
 
-    return playerName
-
+  function createPlayer(playerName) {
+    const playerGameboard = Gameboard(playerName);
+    return playerGameboard
   }
   
+    return{
+      createComputerPlayer,
+      createPlayer
+    }
+}
+
 module.exports = Player;
