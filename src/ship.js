@@ -1,5 +1,8 @@
-function Ship(length,x,y,shipOrientation) {
+
+// Export factory function to create a ship
+function Ship(length, x, y, shipOrientation, shipType) {
   return {
+    shipType,
     shipOrientation,
     length,
     hits: 0,

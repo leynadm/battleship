@@ -1,5 +1,8 @@
 const Gameboard = require("./gameboard");
 
+/* Factory function to create a player, which in turns creates a gameboard
+using the imported Gameboard factory function */
+
 function Player() {
 
   function createComputerPlayer() {
