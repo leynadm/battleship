@@ -1,0 +1,25 @@
+
+
+.first-player-board{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.div-coordinate{
+
+    border: black 1px solid;
+}
+
+.first-player-ships{
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    width: 5rem;
+    height: 4rem;
+}
+
+.ship-square{
+    background-color: black;
+}
