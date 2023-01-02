@@ -22,11 +22,13 @@
 
 .div-coordinate{
     border: black 1px solid;
+    width: 4rem;
+    height: 4rem;
 }
 
 .first-player-ships{
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
 }
 
 img {
@@ -34,12 +36,15 @@ img {
     height: 4rem;
 }
 
+
 .ship-square{
     background-color: black;
 }
 
+
 .div-coordinate:hover {
     background-color: darkblue;
+    color: white;
 }
 
 .wrapper{

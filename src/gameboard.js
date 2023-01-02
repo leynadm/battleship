@@ -27,26 +27,27 @@ function Gameboard(playerName) {
   }
 
   function renderBoard(playerBoard) {
-    console.log(playerBoard)
+    console.log(playerBoard);
 
     const myDOM = getDOMElements();
 
-    let xCoordinate = 1;
+    let xCoordinate = 0;
 
-    for (let index = 1; index <= 10; index++) {
-      let yCoordinate = 1;
+    for (let index = 0; index < 10; index++) {
+      let yCoordinate = 0;
 
-      for (let index = 1; index <= 10; index++) {
+      for (let index = 0; index < 10; index++) {
         const divCoordinate = document.createElement("div");
         divCoordinate.classList.add(
           "div-coordinate",
-          `div-coordinate-${xCoordinate}-${yCoordinate}`
+          `div-coordinate-${xCoordinate}${yCoordinate}`
         );
         divCoordinate.setAttribute(
           "div-coordinate",
-          `${yCoordinate}-${xCoordinate}`
+          `${yCoordinate}${xCoordinate}`
         );
-        divCoordinate.textContent = `"${yCoordinate}-${xCoordinate}"`;
+
+        divCoordinate.textContent = `"${yCoordinate}${xCoordinate}"`;
         playerBoard.appendChild(divCoordinate);
 
         yCoordinate += 1;
@@ -56,28 +57,58 @@ function Gameboard(playerName) {
   }
 
   function addShipsToBoard() {
-
     const myDOM = getDOMElements();
 
-    myDOM.divCoordinates.forEach((divCoordinateCell) => {
-      const coordinateValue = divCoordinateCell.getAttribute("div-coordinate");
+    const shipSquares = [];
 
-      ships.forEach((element) => {
-        // Match the coordinates being looped (1-100) with the ones in the ships
-        const shipCoordinateValue = element.x;
+    ships.forEach((element) => {
+      // Match the coordinates being looped (1-100) with the ones in the ships
+      const shipCoordinateValueX = element.x;
+      const shipCoordinateValueY = element.y;
 
-        if (coordinateValue == shipCoordinateValue) {
-           divCoordinateCell.classList.add("ship-square");
+      const coordinateIntegerX = Number(shipCoordinateValueX);
+      const coordinateIntegerY = Number(shipCoordinateValueY);
+
+      if (element.shipOrientation === "horizontal") {
+        for (
+          let indexHorizontal = coordinateIntegerX;
+          indexHorizontal <= coordinateIntegerY;
+          indexHorizontal += 10
+        ) {
+
+            shipSquares.push(indexHorizontal)
+
         }
+      } else {
+        for (
+          let indexVertical = coordinateIntegerX;
+          indexVertical <= coordinateIntegerY;
+          indexVertical++
+        ) {
+          shipSquares.push(indexVertical)
+        }
+      }
+
+
+      console.log(shipSquares)
+
+    myDOM.divCoordinates.forEach((divCoordinateCell) => {
+      // Get the coordinate value on the board
+      const coordinateValue = Number(divCoordinateCell.getAttribute("div-coordinate"));
+
+      shipSquares.forEach(element => {
+        if(element === coordinateValue){
+
+          divCoordinateCell.classList.add('ship-square')
+        }
+      });  
+      
+
       });
     });
   }
 
-  function generateComputerShips(){
-
-    
-
-  }
+  function generateComputerShips() {}
 
   function checkFleetStatus() {}
 
