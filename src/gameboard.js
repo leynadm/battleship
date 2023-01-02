@@ -26,9 +26,11 @@ function Gameboard(playerName) {
     });
   }
 
-  function renderBoard() {
+  function renderBoard(playerBoard) {
+    console.log(playerBoard)
+
     const myDOM = getDOMElements();
-    console.log(myDOM);
+
     let xCoordinate = 1;
 
     for (let index = 1; index <= 10; index++) {
@@ -45,7 +47,7 @@ function Gameboard(playerName) {
           `${yCoordinate}-${xCoordinate}`
         );
         divCoordinate.textContent = `"${yCoordinate}-${xCoordinate}"`;
-        myDOM.firstPlayerBoard.appendChild(divCoordinate);
+        playerBoard.appendChild(divCoordinate);
 
         yCoordinate += 1;
       }
@@ -54,19 +56,27 @@ function Gameboard(playerName) {
   }
 
   function addShipsToBoard() {
+
     const myDOM = getDOMElements();
 
     myDOM.divCoordinates.forEach((divCoordinateCell) => {
       const coordinateValue = divCoordinateCell.getAttribute("div-coordinate");
 
       ships.forEach((element) => {
+        // Match the coordinates being looped (1-100) with the ones in the ships
         const shipCoordinateValue = element.x;
 
         if (coordinateValue == shipCoordinateValue) {
-          divCoordinateCell.classList.add("ship-square");
+           divCoordinateCell.classList.add("ship-square");
         }
       });
     });
+  }
+
+  function generateComputerShips(){
+
+    
+
   }
 
   function checkFleetStatus() {}

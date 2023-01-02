@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="page-header">
         BATTLESHIP
@@ -19,33 +21,38 @@
 
     </div>
 
-    <div class="first-pane">
-        <div class="first-player-name"></div>
-        
-        <div class="first-player-battlefield">
+    <div class="wrapper">
 
-            <div class="first-player-header"></div>
-        
+        <div class="first-pane">
 
-            <div class="first-player-board"></div>
 
-            <div class="first-player-ships">
-                <img src="/src/images/carrier.svg" alt="" draggable="true">
-                <img src="/src/images/submarine.svg" alt="" draggable="true">
-                <img src="/src/images/destroyer.svg" alt="" draggable="true">
-                <img src="/src/images/boat.svg" alt="" draggable="true">
-                <img src="/src/images/patrol.svg" alt="" draggable="true">
-            
+            <div class="first-player-battlefield">
+
+                <div class="first-player-name">Daniel</div>
+                <div class="first-player-board"></div>
+                <div class="first-player-ships">
+                    <img src="/src/images/boat.svg" alt="" draggable="true">
+                    <img src="/src/images/carrier.svg" alt="" draggable="true">
+                    <img src="/src/images/patrol.svg" alt="" draggable="true">
+                    <img src="/src/images/destroyer.svg" alt="" draggable="true">
+                </div>
+
             </div>
-            
-        </div>
-    </div>
-
-    <div class="second-pane">
-        <div class="second-player-name"></div>
-        <div class="second-player-board">
 
         </div>
+
+        <div class="second-pane">
+
+            <div class="second-player-battlefield">
+                <div class="second-player-name">Computer</div>
+                <div class="second-player-board"></div>
+                <div class="second-player ships"></div>
+            </div>
+
+        </div>
+
     </div>
+
 </body>
+
 </html>

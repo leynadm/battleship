@@ -10,14 +10,25 @@ function gameLoop() {
   const player = Player();
 
   const playerGameboard = player.createPlayer("Daniel");
-  playerGameboard.placeShip(5, "1-1", "2-1", "horizontal","boat");
-  playerGameboard.renderBoard()
+  playerGameboard.placeShip(5, "1-1", "5-1", "horizontal","boat");
+  playerGameboard.placeShip(3, "1-3", "3-3", "horizontal","boat");
+  
+  const myDOM = getDOMElements()
+  console.log(myDOM)
+  // Generate the two boards
+  playerGameboard.renderBoard(myDOM.firstPlayerBoard)
+  playerGameboard.renderBoard(myDOM.secondPlayerBoard)
+
+
   playerGameboard.addShipsToBoard()
   console.log(playerGameboard.ships)
   
   const computerGameboard = player.createComputerPlayer();
   computerGameboard.placeShip(5, "1-5", "2-5", "horizontal","boat");
 
+  players.forEach(element => {
+    
+  });
   
 }
 
