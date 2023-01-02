@@ -5,8 +5,22 @@
     grid-template-columns: repeat(10, 1fr);
 }
 
-.div-coordinate{
+.second-player-board{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
 
+.page-header{
+    display: flex;
+    justify-content: center;
+}
+
+.buttons-menu{
+    display: flex;
+    justify-content: center;
+}
+
+.div-coordinate{
     border: black 1px solid;
 }
 
@@ -22,4 +36,13 @@ img {
 
 .ship-square{
     background-color: black;
+}
+
+.div-coordinate:hover {
+    background-color: darkblue;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: space-around;
 }
