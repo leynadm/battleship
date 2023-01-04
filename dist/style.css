@@ -32,11 +32,25 @@
 }
 
 img {
-    width: 5rem;
+    width: 4rem;
     height: 4rem;
+    stroke-opacity: 0;
+    fill-opacity: 0;
+    background: transparent;
+    opacity: 1;
+    background-color: transparent;
 }
 
+img[draggable=true]:active {
+    opacity: 0.5; /* make element 50% transparent while it is being dragged */
+    background-color: transparent;
+    background: transparent;
+}
 
+img[draggable=true] {
+    background-color: rgba(255, 255, 255, 1); /* initial background color (not transparent) */
+  }
+  
 .ship-square{
     background-color: black;
 }

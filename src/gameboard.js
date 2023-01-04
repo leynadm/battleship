@@ -5,6 +5,7 @@ const { getDOMElements, myDOMFunctions } = require("./DOM-interaction");
 function Gameboard(playerName) {
   const ships = [];
   const missedAttacks = [];
+  const shipSquares = [];
 
   function placeShip(length, x, y, shipOrientation, shipType) {
     const ship = Ship(length, x, y, shipOrientation, shipType);
@@ -26,41 +27,7 @@ function Gameboard(playerName) {
     });
   }
 
-  function renderBoard(playerBoard) {
-    console.log(playerBoard);
-
-    const myDOM = getDOMElements();
-
-    let xCoordinate = 0;
-
-    for (let index = 0; index < 10; index++) {
-      let yCoordinate = 0;
-
-      for (let index = 0; index < 10; index++) {
-        const divCoordinate = document.createElement("div");
-        divCoordinate.classList.add(
-          "div-coordinate",
-          `div-coordinate-${xCoordinate}${yCoordinate}`
-        );
-        divCoordinate.setAttribute(
-          "div-coordinate",
-          `${yCoordinate}${xCoordinate}`
-        );
-
-        divCoordinate.textContent = `"${yCoordinate}${xCoordinate}"`;
-        playerBoard.appendChild(divCoordinate);
-
-        yCoordinate += 1;
-      }
-      xCoordinate += 1;
-    }
-  }
-
   function addShipsToBoard() {
-    const myDOM = getDOMElements();
-
-    const shipSquares = [];
-
     ships.forEach((element) => {
       // Match the coordinates being looped (1-100) with the ones in the ships
       const shipCoordinateValueX = element.x;
@@ -69,15 +36,14 @@ function Gameboard(playerName) {
       const coordinateIntegerX = Number(shipCoordinateValueX);
       const coordinateIntegerY = Number(shipCoordinateValueY);
 
+      // Get all the coordinates that have ships and save them in shipSqaures
       if (element.shipOrientation === "horizontal") {
         for (
           let indexHorizontal = coordinateIntegerX;
           indexHorizontal <= coordinateIntegerY;
           indexHorizontal += 10
         ) {
-
-            shipSquares.push(indexHorizontal)
-
+          shipSquares.push(indexHorizontal);
         }
       } else {
         for (
@@ -85,40 +51,89 @@ function Gameboard(playerName) {
           indexVertical <= coordinateIntegerY;
           indexVertical++
         ) {
-          shipSquares.push(indexVertical)
+          shipSquares.push(indexVertical);
         }
       }
-
-
-      console.log(shipSquares)
-
-    myDOM.divCoordinates.forEach((divCoordinateCell) => {
-      // Get the coordinate value on the board
-      const coordinateValue = Number(divCoordinateCell.getAttribute("div-coordinate"));
-
-      shipSquares.forEach(element => {
-        if(element === coordinateValue){
-
-          divCoordinateCell.classList.add('ship-square')
-        }
-      });  
-      
-
-      });
+      // console.log(shipSquares)
     });
+  
   }
 
-  function generateComputerShips() {}
+  function generateComputerShipsCoordinates() {
+    // Generate an array of 100 undefined elements, then populate them from 0 to 99. Then shuffle.
+    const numbers = Array(100)
+      .fill()
+      .map((_, index) => index);
+    numbers.sort(() => Math.random() - 0.5);
+    const randomCoordinates = numbers.slice(0, 4);
 
-  function checkFleetStatus() {}
+    const limitBottomAndRight = [
+      "09",
+      "19",
+      "29",
+      "39",
+      "49",
+      "59",
+      "69",
+      "79",
+      "89",
+      "90",
+      "91",
+      "92",
+      "93",
+      "94",
+      "95",
+      "96",
+      "97",
+      "98",
+      "99",
+    ];
+
+    const shipProperties = {
+      0: { type: "destroyer", length: 5 },
+      1: { type: "carrier", length: 4 },
+      2: { type: "submarine", length: 3 },
+      3: { type: "boat", length: 2 },
+    };
+
+    for (let index = 0; index <= randomCoordinates.length - 1; index++) {
+      const shipType = shipProperties[index % 4].type;
+      console.log(shipType);
+      let shipLength = shipProperties[index % 4].length;
+      shipLength -= 1;
+      console.log(shipLength);
+      const shipOrientation = index % 2 === 0 ? "horizontal" : "vertical";
+      console.log(shipOrientation);
+
+      if (limitBottomAndRight.includes(randomCoordinates[index])) {
+        // const y = randomCoordinates[index] - shipLength
+        placeShip(
+          shipLength,
+          randomCoordinates[index],
+          randomCoordinates[index] - shipLength,
+          shipOrientation,
+          shipType
+        );
+      } else {
+        placeShip(
+          shipLength,
+          randomCoordinates[index],
+          randomCoordinates[index] + shipLength,
+          shipOrientation,
+          shipType
+        );
+      }
+    }
+  }
 
   return {
     playerName,
     ships,
     placeShip,
     receiveAttack,
-    renderBoard,
-    addShipsToBoard,
+    shipSquares,
+    generateComputerShipsCoordinates,
+    addShipsToBoard
   };
 }
 
