@@ -15,6 +15,7 @@ function Ship(length, x, y, shipOrientation, shipType) {
     isSunk() {
       return this.hits >= this.length;
     },
+    shipSurface: []
   };
 }
 

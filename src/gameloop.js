@@ -22,11 +22,16 @@ function gameLoop() {
   myDOMFunc.renderBoard(myDOM.firstPlayerBoard);
   playerGameboard.addShipsToBoard();
   myDOMFunc.renderShipsOnBoard(playerGameboard.shipSquares);
-  
-  // Generate the computer board
+
+  // Generate the computer ships
   const computerGameboard = player.createComputerPlayer();
   computerGameboard.generateComputerShipsCoordinates();
-  computerGameboard.addShipsToBoard()
+  computerGameboard.addShipsToBoard();
+
+  // render the other board
+  myDOMFunc.renderBoard(myDOM.secondPlayerBoard);
+  myDOMFunc.addEventListeners(computerGameboard.receiveAttack)
+  
 }
 
 module.exports = gameLoop;

@@ -1,14 +1,18 @@
+const Gameboard = require("./gameboard");
+
 function getDOMElements() {
   const startButton = document.querySelector(".start-button");
   const divCoordinates = document.querySelectorAll(".div-coordinate");
   const firstPlayerBoard = document.querySelector(".first-player-board");
   const secondPlayerBoard = document.querySelector(".second-player-board");
-
+  const secondPlayerDivs = secondPlayerBoard.querySelectorAll(".div-coordinate");
+  
   return {
     startButton,
     divCoordinates,
     firstPlayerBoard,
     secondPlayerBoard,
+    secondPlayerDivs,
   };
 }
 
@@ -22,13 +26,20 @@ function myDOMFunctions() {
       for (let index = 0; index < 10; index++) {
         const divCoordinate = document.createElement("div");
         divCoordinate.classList.add(
-          "div-coordinate",
-          `div-coordinate-${xCoordinate}${yCoordinate}`
+          "div-coordinate"
         );
         divCoordinate.setAttribute(
           "div-coordinate",
           `${yCoordinate}${xCoordinate}`
         );
+        divCoordinate.setAttribute(
+          "div-coordinate-y",
+          `${yCoordinate}`
+        );
+        divCoordinate.setAttribute(
+          "div-coordinate-x",
+          `${xCoordinate}`
+        )
 
         divCoordinate.textContent = `"${yCoordinate}${xCoordinate}"`;
         playerBoard.appendChild(divCoordinate);
@@ -56,9 +67,24 @@ function myDOMFunctions() {
     });
   }
 
+  function addEventListeners(receiveAttack){
+
+    const DOMElements = getDOMElements();
+    DOMElements.secondPlayerDivs.forEach(element => {
+      element.addEventListener('click',() => {
+        const elementX = element.getAttribute('div-coordinate-x');
+        const elementY = element.getAttribute('div-coordinate-y');
+
+        receiveAttack(elementX,elementY)
+      })
+    });
+
+  }
+
   return {
     renderBoard,
     renderShipsOnBoard,
+    addEventListeners
   };
 }
 

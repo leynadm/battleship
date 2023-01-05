@@ -6,4 +6,3 @@ const gameLoop = require("./gameloop");
 
 gameLoop();
 
-// createBoard();

@@ -7,6 +7,7 @@ function Gameboard(playerName) {
   const ships = [];
   const missedAttacks = [];
   const shipSquares = [];
+  const successfulAttacks = [];
 
   function placeShip(length, x, y, shipOrientation, shipType) {
     const ship = Ship(length, x, y, shipOrientation, shipType);
@@ -14,18 +15,61 @@ function Gameboard(playerName) {
   }
 
   function receiveAttack(x, y) {
-    ships.forEach((element) => {
-      if (x >= element.x && x <= element.y) {
-        element.hit();
-        element.isSunk();
-        return element;
-      }
-      missedAttacks.push(`${x},${y}`);
+    const shipSurfaceArea = [];
 
-      if (element.sunk) {
-        // remove item from the array
-      }
-    });
+    const coordinate = String(y) + String(x);
+    const coordinateAsANumber = Number(coordinate);
+    console.log(coordinateAsANumber)
+    console.log(ships)
+    if (
+      missedAttacks.includes(coordinateAsANumber) ||
+      successfulAttacks.includes(coordinateAsANumber)
+    ){console.log('includes')};
+
+    if (
+      !missedAttacks.includes(coordinateAsANumber) &&
+      shipSquares.includes(coordinateAsANumber)
+    ) {
+      ships.forEach((element) => {
+        const startSurfaceArea = element.x;
+        const endSurfaceArea = element.y;
+
+        if (coordinateAsANumber === startSurfaceArea) {
+          if (element.shipOrientation === "horizontal") {
+            for (
+              let index = startSurfaceArea;
+              index <= endSurfaceArea;
+              index += 10
+            ) {
+              shipSurfaceArea.push(index);
+              element.shipSurface.push(index);
+            }
+          } else {
+            for (
+              let index = startSurfaceArea;
+              index <= endSurfaceArea;
+              index++
+            ) {
+              shipSurfaceArea.push(index);
+              element.shipSurface.push(index);
+            }
+          }
+        }
+
+        if (element.shipSurface.includes(coordinateAsANumber)) {
+          element.hit();
+          console.log(element.isSunk());
+        }
+      });
+    } else if (missedAttacks.includes(coordinateAsANumber)) {
+      alert("You already selected this cell!");
+    } else {
+      missedAttacks.push(coordinateAsANumber);
+    }
+
+    if (shipSurfaceArea.includes(coordinateAsANumber)) {
+      successfulAttacks.push(coordinateAsANumber);
+    }
   }
 
   function addShipsToBoard() {
@@ -127,7 +171,6 @@ function Gameboard(playerName) {
   }
 
   function generateComputerShipsCoordinates() {
-
     if (generateComputerShipsCoordinates === true) return;
 
     // Generate an array of 100 undefined elements, then populate them from 0 to 99. Then shuffle.
@@ -148,17 +191,37 @@ function Gameboard(playerName) {
     if (!coordinatesAreValid) {
       generateComputerShipsCoordinates();
     }
-    
-    if(coordinatesAreValid ){
 
-      placeShip(5,randomCoordinates[0],randomCoordinates[0]+10*4,"horizontal","destroyer")
-      placeShip(4,randomCoordinates[1],randomCoordinates[1]+3,"vertical","carrier")
-      placeShip(3,randomCoordinates[2],randomCoordinates[2]+10*2,"horizontal","patrol")
-      placeShip(2,randomCoordinates[3],randomCoordinates[3]+1,"vertical","boat")
-    
-
+    if (coordinatesAreValid) {
+      placeShip(
+        5,
+        randomCoordinates[0],
+        randomCoordinates[0] + 10 * 4,
+        "horizontal",
+        "destroyer"
+      );
+      placeShip(
+        4,
+        randomCoordinates[1],
+        randomCoordinates[1] + 3,
+        "vertical",
+        "carrier"
+      );
+      placeShip(
+        3,
+        randomCoordinates[2],
+        randomCoordinates[2] + 10 * 2,
+        "horizontal",
+        "patrol"
+      );
+      placeShip(
+        2,
+        randomCoordinates[3],
+        randomCoordinates[3] + 1,
+        "vertical",
+        "boat"
+      );
     }
-
   }
 
   return {
