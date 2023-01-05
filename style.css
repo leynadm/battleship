@@ -65,3 +65,9 @@ img[draggable=true] {
     display: flex;
     justify-content: space-around;
 }
+
+.ship-container{
+    display: flex;
+    flex-direction: column;
+    
+}
