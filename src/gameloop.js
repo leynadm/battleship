@@ -10,10 +10,10 @@ function gameLoop() {
 
   // Create the human player object and place his ships
   const playerGameboard = player.createPlayer("Daniel");
-  playerGameboard.placeShip(5, "00", "40", "horizontal", "destroyer");
-  playerGameboard.placeShip(3, "02", "04", "vertical", "carrier");
-  playerGameboard.placeShip(4, "22", "52", "horizontal", "submarine");
-  playerGameboard.placeShip(2, "57", "58", "vertical", "boat");
+  playerGameboard.placeShip(5, 0, 40, "horizontal", "destroyer");
+  playerGameboard.placeShip(3, 2, 4, "vertical", "carrier");
+  playerGameboard.placeShip(4, 22, 52, "horizontal", "submarine");
+  playerGameboard.placeShip(2, 57, 58, "vertical", "boat");
 
   const myDOM = getDOMElements();
   const myDOMFunc = myDOMFunctions();

@@ -11,64 +11,44 @@ function Gameboard(playerName) {
 
   function placeShip(length, x, y, shipOrientation, shipType) {
     const ship = Ship(length, x, y, shipOrientation, shipType);
+    ship.getShipSurface();
     ships.push(ship);
   }
 
   function receiveAttack(x, y) {
     const shipSurfaceArea = [];
 
-    const coordinate = String(y) + String(x);
-    const coordinateAsANumber = Number(coordinate);
-    console.log(coordinateAsANumber)
-    console.log(ships)
-    if (
-      missedAttacks.includes(coordinateAsANumber) ||
-      successfulAttacks.includes(coordinateAsANumber)
-    ){console.log('includes')};
+    const strCoordinate = String(y) + String(x);
+    const intCoordinate = Number(strCoordinate);
+    console.log(intCoordinate);
+    console.log(ships);
+    console.log(missedAttacks);
+    console.log(successfulAttacks);
+    const myDomFunc = myDOMFunctions();
 
     if (
-      !missedAttacks.includes(coordinateAsANumber) &&
-      shipSquares.includes(coordinateAsANumber)
+      missedAttacks.includes(intCoordinate) ||
+      successfulAttacks.includes(intCoordinate)
     ) {
-      ships.forEach((element) => {
-        const startSurfaceArea = element.x;
-        const endSurfaceArea = element.y;
-
-        if (coordinateAsANumber === startSurfaceArea) {
-          if (element.shipOrientation === "horizontal") {
-            for (
-              let index = startSurfaceArea;
-              index <= endSurfaceArea;
-              index += 10
-            ) {
-              shipSurfaceArea.push(index);
-              element.shipSurface.push(index);
-            }
-          } else {
-            for (
-              let index = startSurfaceArea;
-              index <= endSurfaceArea;
-              index++
-            ) {
-              shipSurfaceArea.push(index);
-              element.shipSurface.push(index);
-            }
-          }
-        }
-
-        if (element.shipSurface.includes(coordinateAsANumber)) {
-          element.hit();
-          console.log(element.isSunk());
-        }
-      });
-    } else if (missedAttacks.includes(coordinateAsANumber)) {
-      alert("You already selected this cell!");
-    } else {
-      missedAttacks.push(coordinateAsANumber);
+      return;
     }
 
-    if (shipSurfaceArea.includes(coordinateAsANumber)) {
-      successfulAttacks.push(coordinateAsANumber);
+    if (
+      !missedAttacks.includes(intCoordinate) && !successfulAttacks.includes(intCoordinate) &&
+      shipSquares.includes(intCoordinate)
+    ) {
+      ships.forEach((element) => {
+        if (element.shipSurface.includes(intCoordinate)) {
+          element.hit();
+          successfulAttacks.push(intCoordinate)
+          console.log(element.isSunk());
+          myDomFunc.renderHitResult(strCoordinate, "Success");
+
+        }
+      });
+    } else {
+      missedAttacks.push(intCoordinate);
+      myDomFunc.renderHitResult(strCoordinate, "Failed");
     }
   }
 

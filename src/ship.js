@@ -1,4 +1,3 @@
-
 // Export factory function to create a ship
 function Ship(length, x, y, shipOrientation, shipType) {
   return {
@@ -15,7 +14,16 @@ function Ship(length, x, y, shipOrientation, shipType) {
     isSunk() {
       return this.hits >= this.length;
     },
-    shipSurface: []
+    shipSurface: [],
+    getShipSurface() {
+      let step = 1;
+      if (this.shipOrientation === "horizontal") {
+        step = 10;
+      }
+      for (let i = this.x; i <= this.y; i += step) {
+        this.shipSurface.push(i);
+      }
+    },
   };
 }
 

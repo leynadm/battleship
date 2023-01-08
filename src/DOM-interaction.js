@@ -5,8 +5,9 @@ function getDOMElements() {
   const divCoordinates = document.querySelectorAll(".div-coordinate");
   const firstPlayerBoard = document.querySelector(".first-player-board");
   const secondPlayerBoard = document.querySelector(".second-player-board");
-  const secondPlayerDivs = secondPlayerBoard.querySelectorAll(".div-coordinate");
-  
+  const secondPlayerDivs =
+    secondPlayerBoard.querySelectorAll(".div-coordinate");
+
   return {
     startButton,
     divCoordinates,
@@ -17,6 +18,27 @@ function getDOMElements() {
 }
 
 function myDOMFunctions() {
+  function renderHitResult(hitCoordinate, hitResult) {
+    const myDOM = getDOMElements();
+
+    const div = myDOM.secondPlayerBoard.querySelector(
+      `div.div-coordinate[div-coordinate="${hitCoordinate}"]`
+    );
+
+    if (hitResult === "Success") {
+      const hitResultImg = document.createElement("img");
+      hitResultImg.src = "/src/images/bullet-hit.svg";
+      hitResultImg.classList.add("hit-result-img", "successful-hit-img");
+      div.appendChild(hitResultImg);
+    } else {
+      const hitResultImg = document.createElement("img");
+      hitResultImg.src = "/src/images/bullet-missed.svg";
+      hitResultImg.classList.add("hit-result-img", "failed-hit-img");
+      div.appendChild(hitResultImg);
+    }
+    console.log(div);
+  }
+
   function renderBoard(playerBoard) {
     let xCoordinate = 0;
 
@@ -25,21 +47,13 @@ function myDOMFunctions() {
 
       for (let index = 0; index < 10; index++) {
         const divCoordinate = document.createElement("div");
-        divCoordinate.classList.add(
-          "div-coordinate"
-        );
+        divCoordinate.classList.add("div-coordinate");
         divCoordinate.setAttribute(
           "div-coordinate",
           `${yCoordinate}${xCoordinate}`
         );
-        divCoordinate.setAttribute(
-          "div-coordinate-y",
-          `${yCoordinate}`
-        );
-        divCoordinate.setAttribute(
-          "div-coordinate-x",
-          `${xCoordinate}`
-        )
+        divCoordinate.setAttribute("div-coordinate-y", `${yCoordinate}`);
+        divCoordinate.setAttribute("div-coordinate-x", `${xCoordinate}`);
 
         divCoordinate.textContent = `"${yCoordinate}${xCoordinate}"`;
         playerBoard.appendChild(divCoordinate);
@@ -67,24 +81,23 @@ function myDOMFunctions() {
     });
   }
 
-  function addEventListeners(receiveAttack){
-
+  function addEventListeners(receiveAttack) {
     const DOMElements = getDOMElements();
-    DOMElements.secondPlayerDivs.forEach(element => {
-      element.addEventListener('click',() => {
-        const elementX = element.getAttribute('div-coordinate-x');
-        const elementY = element.getAttribute('div-coordinate-y');
+    DOMElements.secondPlayerDivs.forEach((element) => {
+      element.addEventListener("click", () => {
+        const elementX = element.getAttribute("div-coordinate-x");
+        const elementY = element.getAttribute("div-coordinate-y");
 
-        receiveAttack(elementX,elementY)
-      })
+        receiveAttack(elementX, elementY);
+      });
     });
-
   }
 
   return {
     renderBoard,
     renderShipsOnBoard,
-    addEventListeners
+    addEventListeners,
+    renderHitResult,
   };
 }
 
