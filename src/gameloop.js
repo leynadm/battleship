@@ -9,9 +9,9 @@ function gameLoop() {
   const player = Player();
 
   // Create the human player object and place his ships
-  const playerGameboard = player.createPlayer("Daniel");
+  const playerGameboard = player.createPlayer("User");
   playerGameboard.placeShip(5, 0, 40, "horizontal", "destroyer");
-  playerGameboard.placeShip(3, 2, 4, "vertical", "carrier");
+  playerGameboard.placeShip(3, 3, 5, "vertical", "carrier");
   playerGameboard.placeShip(4, 22, 52, "horizontal", "submarine");
   playerGameboard.placeShip(2, 57, 58, "vertical", "boat");
 
@@ -22,16 +22,18 @@ function gameLoop() {
   myDOMFunc.renderBoard(myDOM.firstPlayerBoard);
   playerGameboard.addShipsToBoard();
   myDOMFunc.renderShipsOnBoard(playerGameboard.shipSquares);
-
+      
   // Generate the computer ships
-  const computerGameboard = player.createComputerPlayer();
+  const computerGameboard = player.createComputerPlayer("Computer");
   computerGameboard.generateComputerShipsCoordinates();
   computerGameboard.addShipsToBoard();
 
+  
   // render the other board
   myDOMFunc.renderBoard(myDOM.secondPlayerBoard);
-  myDOMFunc.addEventListeners(computerGameboard.receiveAttack)
-  
+  myDOMFunc.addEventListeners(computerGameboard.receiveAttack,playerGameboard.computerAttack);
+  // Go through the game loop
+
 }
 
 module.exports = gameLoop;

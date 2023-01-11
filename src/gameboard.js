@@ -8,6 +8,16 @@ function Gameboard(playerName) {
   const missedAttacks = [];
   const shipSquares = [];
   const successfulAttacks = [];
+  let turn = false;
+  const player = playerName;
+
+  function takeTurn() {
+    turn = !turn;
+  }
+
+  function isTurn() {
+    return turn;
+  }
 
   function placeShip(length, x, y, shipOrientation, shipType) {
     const ship = Ship(length, x, y, shipOrientation, shipType);
@@ -15,41 +25,64 @@ function Gameboard(playerName) {
     ships.push(ship);
   }
 
-  function receiveAttack(x, y) {
-    const shipSurfaceArea = [];
+  function generateComputerHitCoordinates() {
+    const ComputerHitXCoordinate = Math.floor(Math.random() * 10);
+    const ComputerHitYCoordinate = Math.floor(Math.random() * 10);
+
+    console.log(ComputerHitXCoordinate);
+    console.log(ComputerHitYCoordinate);
+
+    return {
+      x: ComputerHitXCoordinate,
+      y: ComputerHitYCoordinate,
+    };
+  }
+
+  function computerAttack() {
+    
+    const ComputerHitXCoordinate = Math.floor(Math.random() * 10);
+    const ComputerHitYCoordinate = Math.floor(Math.random() * 10);
+    console.log('now inside computer attack')
+    receiveAttack(ComputerHitXCoordinate,ComputerHitYCoordinate,"Computer")
+  }
+
+  function receiveAttack(x, y,callback) {
+
+    console.log('Now in receive attack')
 
     const strCoordinate = String(y) + String(x);
     const intCoordinate = Number(strCoordinate);
-    console.log(intCoordinate);
-    console.log(ships);
-    console.log(missedAttacks);
-    console.log(successfulAttacks);
     const myDomFunc = myDOMFunctions();
 
     if (
       missedAttacks.includes(intCoordinate) ||
       successfulAttacks.includes(intCoordinate)
     ) {
+      alert("You already attacked this zone!");
       return;
     }
 
     if (
-      !missedAttacks.includes(intCoordinate) && !successfulAttacks.includes(intCoordinate) &&
+      !missedAttacks.includes(intCoordinate) &&
+      !successfulAttacks.includes(intCoordinate) &&
       shipSquares.includes(intCoordinate)
     ) {
       ships.forEach((element) => {
         if (element.shipSurface.includes(intCoordinate)) {
           element.hit();
-          successfulAttacks.push(intCoordinate)
-          console.log(element.isSunk());
-          myDomFunc.renderHitResult(strCoordinate, "Success");
-
+          successfulAttacks.push(intCoordinate);
+          myDomFunc.renderHitResult(strCoordinate, "Success",player);
         }
       });
     } else {
       missedAttacks.push(intCoordinate);
-      myDomFunc.renderHitResult(strCoordinate, "Failed");
+      myDomFunc.renderHitResult(strCoordinate, "Failed",player);
     }
+
+    const delay = Math.floor(Math.random() * (3000 - 1000) + 1000);
+
+    setTimeout(callback, delay);
+
   }
 
   function addShipsToBoard() {
@@ -212,6 +245,10 @@ function Gameboard(playerName) {
     shipSquares,
     generateComputerShipsCoordinates,
     addShipsToBoard,
+    generateComputerHitCoordinates,
+    takeTurn,
+    isTurn,
+    computerAttack
   };
 }
 

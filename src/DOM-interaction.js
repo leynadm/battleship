@@ -18,12 +18,26 @@ function getDOMElements() {
 }
 
 function myDOMFunctions() {
-  function renderHitResult(hitCoordinate, hitResult) {
+  function renderHitResult(hitCoordinate, hitResult,playerBoard) {
     const myDOM = getDOMElements();
 
-    const div = myDOM.secondPlayerBoard.querySelector(
-      `div.div-coordinate[div-coordinate="${hitCoordinate}"]`
-    );
+    let div;
+
+    if(playerBoard === "Computer"){
+      
+      div = myDOM.secondPlayerBoard.querySelector(
+        `div.div-coordinate[div-coordinate="${hitCoordinate}"]`
+      );
+        console.log(div)
+
+    } else {
+
+      div = myDOM.firstPlayerBoard.querySelector(
+        `div.div-coordinate[div-coordinate="${hitCoordinate}"]`
+      );
+        console.log(div)
+    }
+
 
     if (hitResult === "Success") {
       const hitResultImg = document.createElement("img");
@@ -36,7 +50,6 @@ function myDOMFunctions() {
       hitResultImg.classList.add("hit-result-img", "failed-hit-img");
       div.appendChild(hitResultImg);
     }
-    console.log(div);
   }
 
   function renderBoard(playerBoard) {
@@ -81,14 +94,15 @@ function myDOMFunctions() {
     });
   }
 
-  function addEventListeners(receiveAttack) {
+  function addEventListeners(callback1,callback2) {
     const DOMElements = getDOMElements();
     DOMElements.secondPlayerDivs.forEach((element) => {
       element.addEventListener("click", () => {
         const elementX = element.getAttribute("div-coordinate-x");
         const elementY = element.getAttribute("div-coordinate-y");
+        console.log('attaching callbacks')
+        callback1(elementX, elementY,callback2);
 
-        receiveAttack(elementX, elementY);
       });
     });
   }

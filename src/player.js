@@ -15,10 +15,11 @@ function Player() {
     return playerGameboard
   }
   
-    return{
-      createComputerPlayer,
-      createPlayer
-    }
+  return{
+    createComputerPlayer,
+    createPlayer,
+  }
+
 }
 
 module.exports = Player;
