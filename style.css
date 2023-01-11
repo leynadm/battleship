@@ -25,7 +25,6 @@
     width: 4rem;
     height: 4rem;
 }
-
 .first-player-ships{
     display: flex;
     justify-content: space-around;
@@ -57,7 +56,7 @@ img[draggable=true] {
 
 
 .div-coordinate:hover {
-    background-color: darkblue;
+    background-color: wheat;
     color: white;
 }
 
