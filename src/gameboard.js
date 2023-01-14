@@ -37,10 +37,25 @@ function Gameboard(playerName) {
   }
 
   function computerAttack() {
-   
-    const ComputerHitXCoordinate = Math.floor(Math.random() * 10);
-    const ComputerHitYCoordinate = Math.floor(Math.random() * 10);
-    // console.log('now inside computer attack')
+    
+    let ComputerHitXCoordinate;
+    let ComputerHitYCoordinate;
+
+    function generateCoordinates(){
+  
+    ComputerHitXCoordinate = Math.floor(Math.random() * 10);
+    ComputerHitYCoordinate = Math.floor(Math.random() * 10);
+    
+    const intCoordinate = Number(String(ComputerHitYCoordinate) + String(ComputerHitXCoordinate));
+    
+    if (missedAttacks.includes(intCoordinate) || successfulAttacks.includes(intCoordinate)) {
+      generateCoordinates();
+    }
+  
+  }
+
+    generateCoordinates()
+    
     functionInProgress =false
     receiveAttack(ComputerHitXCoordinate,ComputerHitYCoordinate)
 
