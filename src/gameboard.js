@@ -10,6 +10,7 @@ function Gameboard(playerName) {
   const successfulAttacks = [];
   let turn = false;
   const player = playerName;
+  let functionInProgress = false;
 
   function takeTurn() {
     turn = !turn;
@@ -29,9 +30,6 @@ function Gameboard(playerName) {
     const ComputerHitXCoordinate = Math.floor(Math.random() * 10);
     const ComputerHitYCoordinate = Math.floor(Math.random() * 10);
 
-    console.log(ComputerHitXCoordinate);
-    console.log(ComputerHitYCoordinate);
-
     return {
       x: ComputerHitXCoordinate,
       y: ComputerHitYCoordinate,
@@ -39,16 +37,21 @@ function Gameboard(playerName) {
   }
 
   function computerAttack() {
-    
+   
     const ComputerHitXCoordinate = Math.floor(Math.random() * 10);
     const ComputerHitYCoordinate = Math.floor(Math.random() * 10);
-    console.log('now inside computer attack')
-    receiveAttack(ComputerHitXCoordinate,ComputerHitYCoordinate,"Computer")
+    // console.log('now inside computer attack')
+    functionInProgress =false
+    receiveAttack(ComputerHitXCoordinate,ComputerHitYCoordinate)
+
   }
+    
 
   function receiveAttack(x, y,callback) {
 
-    console.log('Now in receive attack')
+    if (functionInProgress) {
+      return;
+    }
 
     const strCoordinate = String(y) + String(x);
     const intCoordinate = Number(strCoordinate);
@@ -70,6 +73,7 @@ function Gameboard(playerName) {
       ships.forEach((element) => {
         if (element.shipSurface.includes(intCoordinate)) {
           element.hit();
+          element.isSunk();
           successfulAttacks.push(intCoordinate);
           myDomFunc.renderHitResult(strCoordinate, "Success",player);
         }
@@ -79,10 +83,30 @@ function Gameboard(playerName) {
       myDomFunc.renderHitResult(strCoordinate, "Failed",player);
     }
 
+    functionInProgress = true
+
     const delay = Math.floor(Math.random() * (3000 - 1000) + 1000);
 
-    setTimeout(callback, delay);
+    setTimeout(() => {
+      functionInProgress = false;
+      callback();
+    }, delay);
 
+    checkSunkShips();
+  }
+
+  function checkSunkShips(){
+
+    let sunkShips = 0;
+    ships.forEach((ship) => {
+      // console.log(ship)
+      console.log(ships)
+      if (ship.sunk) {
+        sunkShips++;
+      }
+    });
+
+    
   }
 
   function addShipsToBoard() {

@@ -94,13 +94,14 @@ function myDOMFunctions() {
     });
   }
 
-  function addEventListeners(callback1,callback2) {
+  function addListeners(callback1,callback2) {
     const DOMElements = getDOMElements();
+    console.log('entering the function again')
     DOMElements.secondPlayerDivs.forEach((element) => {
       element.addEventListener("click", () => {
         const elementX = element.getAttribute("div-coordinate-x");
         const elementY = element.getAttribute("div-coordinate-y");
-        console.log('attaching callbacks')
+        
         callback1(elementX, elementY,callback2);
 
       });
@@ -110,7 +111,7 @@ function myDOMFunctions() {
   return {
     renderBoard,
     renderShipsOnBoard,
-    addEventListeners,
+    addListeners,
     renderHitResult,
   };
 }

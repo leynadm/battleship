@@ -31,9 +31,9 @@ function gameLoop() {
   
   // render the other board
   myDOMFunc.renderBoard(myDOM.secondPlayerBoard);
-  myDOMFunc.addEventListeners(computerGameboard.receiveAttack,playerGameboard.computerAttack);
-  // Go through the game loop
+  myDOMFunc.addListeners(computerGameboard.receiveAttack,playerGameboard.computerAttack);
 
 }
+  
 
 module.exports = gameLoop;

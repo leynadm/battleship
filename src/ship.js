@@ -12,7 +12,9 @@ function Ship(length, x, y, shipOrientation, shipType) {
       this.hits += 1;
     },
     isSunk() {
-      return this.hits >= this.length;
+      if(this.hits >= this.length){
+        this.sunk = true
+      }
     },
     shipSurface: [],
     getShipSurface() {
