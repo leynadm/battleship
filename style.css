@@ -27,6 +27,9 @@
 }
 .first-player-ships{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     justify-content: space-around;
 }
 
@@ -39,6 +42,24 @@ img {
     opacity: 1;
     background-color: transparent;
 }
+
+ 
+#boat{
+    transform: scaleX(2);    
+}
+ 
+#patrol{
+    transform: scaleX(3);
+}
+
+#carrier{
+    transform: scaleX(4);
+}
+
+#destroyer{
+    transform: scaleX(5);
+}
+
 
 img[draggable=true]:active {
     opacity: 0.5; /* make element 50% transparent while it is being dragged */
@@ -67,6 +88,18 @@ img[draggable=true] {
 
 .ship-container{
     display: flex;
-    flex-direction: column;
-    
+}
+
+.drop-zone-over{
+    background-color: aqua;
+}
+
+.ship-cell{
+    width: 4rem;
+    height: 4rem;
+    background-color: blueviolet;
+}
+
+.destroyer-ship{
+    display: flex;;
 }
