@@ -1,43 +1,40 @@
-const Gameboard = require("./gameboard");
 
 function getDOMElements() {
   const startButton = document.querySelector(".start-button");
   const divCoordinates = document.querySelectorAll(".div-coordinate");
   const firstPlayerBoard = document.querySelector(".first-player-board");
+  const firstPlayerDivs = firstPlayerBoard.querySelectorAll(".div-coordinate");
   const secondPlayerBoard = document.querySelector(".second-player-board");
   const secondPlayerDivs =
     secondPlayerBoard.querySelectorAll(".div-coordinate");
+  const boatImgToDrag = document.querySelector(".destroyer-ship");
 
   return {
     startButton,
     divCoordinates,
     firstPlayerBoard,
+    firstPlayerDivs,
     secondPlayerBoard,
     secondPlayerDivs,
+    boatImgToDrag,
   };
 }
 
 function myDOMFunctions() {
-  function renderHitResult(hitCoordinate, hitResult,playerBoard) {
+  function renderHitResult(hitCoordinate, hitResult, playerBoard) {
     const myDOM = getDOMElements();
 
     let div;
 
-    if(playerBoard === "Computer"){
-      
+    if (playerBoard === "Computer") {
       div = myDOM.secondPlayerBoard.querySelector(
         `div.div-coordinate[div-coordinate="${hitCoordinate}"]`
       );
-        console.log(div)
-
     } else {
-
       div = myDOM.firstPlayerBoard.querySelector(
         `div.div-coordinate[div-coordinate="${hitCoordinate}"]`
       );
-        console.log(div)
     }
-
 
     if (hitResult === "Success") {
       const hitResultImg = document.createElement("img");
@@ -77,10 +74,11 @@ function myDOMFunctions() {
   }
 
   function renderShipsOnBoard(shipSquares) {
+
     const DOMElements = getDOMElements();
 
     // Render the ships on the board
-    DOMElements.divCoordinates.forEach((divCoordinateCell) => {
+    DOMElements.firstPlayerDivs.forEach((divCoordinateCell) => {
       // Get the coordinate value on the board
       const coordinateValue = Number(
         divCoordinateCell.getAttribute("div-coordinate")
@@ -94,16 +92,15 @@ function myDOMFunctions() {
     });
   }
 
-  function addListeners(callback1,callback2) {
+  function addListeners(callback1, callback2) {
     const DOMElements = getDOMElements();
-    console.log('entering the function again')
+    console.log("entering the function again");
     DOMElements.secondPlayerDivs.forEach((element) => {
       element.addEventListener("click", () => {
         const elementX = element.getAttribute("div-coordinate-x");
         const elementY = element.getAttribute("div-coordinate-y");
-        
-        callback1(elementX, elementY,callback2);
 
+        callback1(elementX, elementY, callback2);
       });
     });
   }

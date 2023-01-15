@@ -1,39 +1,45 @@
-const Ship = require("./ship");
-const Gameboard = require("./gameboard");
 const Player = require("./player");
 const { getDOMElements, myDOMFunctions } = require("./DOM-interaction");
+const utilityFunctions = require("./utilityFunctions");
 
 function gameLoop() {
-  const players = [];
 
   const player = Player();
 
   // Create the human player object and place his ships
   const playerGameboard = player.createPlayer("User");
-  playerGameboard.placeShip(5, 0, 40, "horizontal", "destroyer");
-  playerGameboard.placeShip(3, 3, 5, "vertical", "carrier");
-  playerGameboard.placeShip(4, 22, 52, "horizontal", "submarine");
-  playerGameboard.placeShip(2, 57, 58, "vertical", "boat");
 
   const myDOM = getDOMElements();
   const myDOMFunc = myDOMFunctions();
 
+
   // Generate the human player board
   myDOMFunc.renderBoard(myDOM.firstPlayerBoard);
-  playerGameboard.addShipsToBoard();
-  myDOMFunc.renderShipsOnBoard(playerGameboard.shipSquares);
-      
+  // myDOMFunc.positionPlayerFleet()
+  utilityFunctions(playerGameboard)
+
   // Generate the computer ships
   const computerGameboard = player.createComputerPlayer("Computer");
   computerGameboard.generateComputerShipsCoordinates();
   computerGameboard.addShipsToBoard();
 
-  
   // render the other board
   myDOMFunc.renderBoard(myDOM.secondPlayerBoard);
-  myDOMFunc.addListeners(computerGameboard.receiveAttack,playerGameboard.computerAttack);
+  myDOMFunc.addListeners(
+    computerGameboard.receiveAttack,
+    playerGameboard.computerAttack
+  );
+
 
 }
-  
 
-module.exports = gameLoop;
+ module.exports = gameLoop
+
+/*  
+module.exports = {
+  gameLoop,
+  createComputerPlayer,
+};
+ */
+ 
+ 

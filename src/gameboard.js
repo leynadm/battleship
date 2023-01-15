@@ -26,44 +26,25 @@ function Gameboard(playerName) {
     ships.push(ship);
   }
 
-  function generateComputerHitCoordinates() {
-    const ComputerHitXCoordinate = Math.floor(Math.random() * 10);
-    const ComputerHitYCoordinate = Math.floor(Math.random() * 10);
+  function checkSunkShips() {
+    console.log(ships)
 
-    return {
-      x: ComputerHitXCoordinate,
-      y: ComputerHitYCoordinate,
-    };
-  }
+    let sunkShips = 0;
+    ships.forEach((ship) => {
+      if (ship.sunk) {
+        sunkShips++;
+      }
+    });
 
-  function computerAttack() {
-    
-    let ComputerHitXCoordinate;
-    let ComputerHitYCoordinate;
-
-    function generateCoordinates(){
-  
-    ComputerHitXCoordinate = Math.floor(Math.random() * 10);
-    ComputerHitYCoordinate = Math.floor(Math.random() * 10);
-    
-    const intCoordinate = Number(String(ComputerHitYCoordinate) + String(ComputerHitXCoordinate));
-    
-    if (missedAttacks.includes(intCoordinate) || successfulAttacks.includes(intCoordinate)) {
-      generateCoordinates();
+    if(sunkShips === 4){
+      console.log('Game over!')
+    } else {
+      console.log(`Ships sunk until now: ${  sunkShips}`)
     }
-  
-  }
-
-    generateCoordinates()
-    
-    functionInProgress =false
-    receiveAttack(ComputerHitXCoordinate,ComputerHitYCoordinate)
 
   }
-    
 
-  function receiveAttack(x, y,callback) {
-
+  function receiveAttack(x, y, callback) {
     if (functionInProgress) {
       return;
     }
@@ -90,15 +71,15 @@ function Gameboard(playerName) {
           element.hit();
           element.isSunk();
           successfulAttacks.push(intCoordinate);
-          myDomFunc.renderHitResult(strCoordinate, "Success",player);
+          myDomFunc.renderHitResult(strCoordinate, "Success", player);
         }
       });
     } else {
       missedAttacks.push(intCoordinate);
-      myDomFunc.renderHitResult(strCoordinate, "Failed",player);
+      myDomFunc.renderHitResult(strCoordinate, "Failed", player);
     }
 
-    functionInProgress = true
+    functionInProgress = true;
 
     const delay = Math.floor(Math.random() * (3000 - 1000) + 1000);
 
@@ -110,18 +91,33 @@ function Gameboard(playerName) {
     checkSunkShips();
   }
 
-  function checkSunkShips(){
+  function computerAttack() {
+    let ComputerHitXCoordinate;
+    let ComputerHitYCoordinate;
 
-    let sunkShips = 0;
-    ships.forEach((ship) => {
-      // console.log(ship)
-      console.log(ships)
-      if (ship.sunk) {
-        sunkShips++;
+    function generateCoordinates() {
+      ComputerHitXCoordinate = Math.floor(Math.random() * 10);
+      ComputerHitYCoordinate = Math.floor(Math.random() * 10);
+
+      const intCoordinate = Number(
+        String(ComputerHitYCoordinate) + String(ComputerHitXCoordinate)
+      );
+
+      if (
+        missedAttacks.includes(intCoordinate) ||
+        successfulAttacks.includes(intCoordinate)
+      ) {
+        generateCoordinates();
       }
-    });
+    }
 
-    
+    generateCoordinates();
+
+    functionInProgress = false;
+
+    receiveAttack(ComputerHitXCoordinate, ComputerHitYCoordinate, null);
+  
+    checkSunkShips()
   }
 
   function addShipsToBoard() {
@@ -284,10 +280,9 @@ function Gameboard(playerName) {
     shipSquares,
     generateComputerShipsCoordinates,
     addShipsToBoard,
-    generateComputerHitCoordinates,
     takeTurn,
     isTurn,
-    computerAttack
+    computerAttack,
   };
 }
 
