@@ -43,7 +43,7 @@ img {
     background-color: transparent;
 }
 
- 
+/*  
 #boat{
     transform: scaleX(2);    
 }
@@ -60,7 +60,7 @@ img {
     transform: scaleX(5);
 }
 
-
+ */
 img[draggable=true]:active {
     opacity: 0.5; /* make element 50% transparent while it is being dragged */
     background-color: transparent;
@@ -102,4 +102,8 @@ img[draggable=true] {
 
 .destroyer-ship{
     display: flex;;
+}
+
+.drop-zone-over-error{
+    background-color: red;
 }
