@@ -81,7 +81,7 @@ function Gameboard(playerName) {
 
     functionInProgress = true;
 
-    const delay = Math.floor(Math.random() * (3000 - 1000) + 1000);
+    const delay = Math.floor(Math.random() * (2000 - 1000) + 1000);
 
     setTimeout(() => {
       functionInProgress = false;

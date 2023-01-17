@@ -1,4 +1,3 @@
-
 function getDOMElements() {
   const startButton = document.querySelector(".start-button");
   const divCoordinates = document.querySelectorAll(".div-coordinate");
@@ -7,7 +6,10 @@ function getDOMElements() {
   const secondPlayerBoard = document.querySelector(".second-player-board");
   const secondPlayerDivs =
     secondPlayerBoard.querySelectorAll(".div-coordinate");
-  const boatImgToDrag = document.querySelector(".destroyer-ship");
+  const boatImgToDrag = document.querySelector(".boat-ship");
+  const destroyerImgToDrag = document.querySelector(".destroyer-ship");
+  const carrierImgToDrag = document.querySelector(".carrier-ship");
+  const patrolImgToDrag = document.querySelector(".patrol-ship")
 
   return {
     startButton,
@@ -17,6 +19,9 @@ function getDOMElements() {
     secondPlayerBoard,
     secondPlayerDivs,
     boatImgToDrag,
+    destroyerImgToDrag,
+    carrierImgToDrag,
+    patrolImgToDrag
   };
 }
 
@@ -74,7 +79,6 @@ function myDOMFunctions() {
   }
 
   function renderShipsOnBoard(shipSquares) {
-
     const DOMElements = getDOMElements();
 
     // Render the ships on the board

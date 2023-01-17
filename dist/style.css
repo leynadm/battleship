@@ -28,9 +28,6 @@
 .first-player-ships{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-around;
 }
 
 img {
@@ -61,6 +58,7 @@ img {
 }
 
  */
+ 
 img[draggable=true]:active {
     opacity: 0.5; /* make element 50% transparent while it is being dragged */
     background-color: transparent;
@@ -88,6 +86,8 @@ img[draggable=true] {
 
 .ship-container{
     display: flex;
+    justify-content: space-between;
+    margin: 1rem;   
 }
 
 .drop-zone-over{
@@ -97,13 +97,44 @@ img[draggable=true] {
 .ship-cell{
     width: 4rem;
     height: 4rem;
-    background-color: blueviolet;
 }
 
 .destroyer-ship{
-    display: flex;;
+    display: flex;
+    background-color: aqua;
+    /* 
+    background-image: url("/src/images/destroyer.svg"); */
+    background-size: cover;
+    background-position: center;
+}
+
+.carrier-ship{
+    background-size: cover;
+    background-position: center;
+    background-color:blue
+}
+
+.patrol-ship{
+    display: flex;
+    background-image: url("/src/images/patrol.svg");
+    background-size: cover;
+    background-position: center;
+}
+
+.boat-ship{
+    display: flex;
+    background-image: url("/src/images/boat.svg");
+    background-size: cover;
+    background-position: center;
 }
 
 .drop-zone-over-error{
     background-color: red;
+}
+
+.ship-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
