@@ -31,37 +31,52 @@
                 <div class="first-player-name">Daniel</div>
                 <div class="first-player-board"></div>
                 <div class="first-player-ships">
-                    <div class="ship-container">
-                        <img src="/src/images/boat.svg" alt="" id="boat" draggable="true">
-                        <button type="button">Direction</button>
-                    </div>
 
                     <div class="ship-container">
-                        <img src="/src/images/carrier.svg" alt="" id="carrier" draggable="true">
-                        <button type="button">Direction</button>
-                    </div>
-                    <div class="ship-container">
-                        <img src="/src/images/patrol.svg" alt="" id="patrol" draggable="true">
-                        <button type="button">Direction</button>
-                    </div>
-                    <div class="ship-container">
-                        <img src="/src/images/destroyer.svg" alt="" id="destroyer" draggable="true">
-                        <button type="button">Direction</button>
-                    </div>
-
-                    <div class="ship-container">
-                        <div class="destroyer-ship" draggable="true" id="destroyer-ship" data-ship-position ="horizontal" data-ship-length="5">
-                            <div class="ship-cell">
-                                <img src="/src/images/carrier.svg" alt="" id="carrier" draggable="true">
-                            </div>
+                        <div class="destroyer-ship" draggable="true" id="destroyer-ship" data-ship-position ="horizontal" data-ship-length="5" data-ship-type="destroyer">
+                            <div class="ship-cell"></div>
                             <div class="ship-cell"></div>
                             <div class="ship-cell"></div>
                             <div class="ship-cell"></div>
                             <div class="ship-cell"></div>
                         </div>
-                        <button type="button">Direction</button>
+
+                        <div class="ship-button">
+                            <button type="button" class="ship-direction-btn">Horizontal</button>
+                        </div>
+
                     </div>
 
+                    <div class="ship-container">
+                        <div class="carrier-ship" draggable="true" id="carrier-ship" data-ship-position="vertical" data-ship-length="4" data-ship-type="carrier">
+                            <div class="ship-cell 1"></div>
+                            <div class="ship-cell 2"></div>
+                            <div class="ship-cell 3"></div>
+                            <div class="ship-cell 4"></div>
+                        </div>
+                        <div class="ship-button">
+                            <button type="button">Horizontal</button>
+                        </div>
+                    </div>
+
+                    
+                    <div class="ship-container">
+                        <div class="patrol-ship" draggable="true" id="patrol-ship" data-ship-position="horizontal" data-ship-length="3" data-ship-type="patrol">
+                            <div class="ship-cell"></div>
+                            <div class="ship-cell"></div>
+                            <div class="ship-cell"></div>
+                        </div>
+                        <button type="button">Horizontal</button>
+                    </div>
+
+                    <div class="ship-container">
+                        <div class="boat-ship" draggable="true" id="boat-ship" data-ship-position="horizontal" data-ship-length="2" data-ship-type="boat">
+                            <div class="ship-cell"></div>
+                            <div class="ship-cell"></div>
+                        </div>
+                        <button type="button">Horizontal</button>
+                    </div>
+                    
                 </div>
 
             </div>
