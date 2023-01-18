@@ -3,7 +3,11 @@ const { getDOMElements, myDOMFunctions } = require("./DOM-interaction");
 const { gameLoop, createComputerPlayer } = require("./gameloop");
 
 function utilityFunctions(argument) {
-  function checkPositionValidity() {}
+  function checkPositionValidity(x,y) {
+
+
+
+  }
 
   function positionPlayerFleet() {
     const myDOM = getDOMElements();
@@ -53,7 +57,6 @@ function utilityFunctions(argument) {
       });
 
       element.addEventListener("drop", (e) => {
-
         const shipPosition = e.dataTransfer.getData("data-ship-position");
         const shipLength = e.dataTransfer.getData("data-ship-length");
         const shipType = e.dataTransfer.getData("data-ship-type");
@@ -62,6 +65,12 @@ function utilityFunctions(argument) {
           secondCoordinate = firstCoordinateX + (shipLength - 1) * 10;
         } else if (shipPosition === "vertical") {
           secondCoordinate = firstCoordinateX + (shipLength - 1);
+        }
+
+        const shipCoordinatesArr = []
+
+        if(!checkPositionValidity(firstCoordinateX,secondCoordinate)){
+          return
         }
 
         if (secondCoordinate > 99) {

@@ -1,6 +1,6 @@
 const Player = require("./player");
 const { getDOMElements, myDOMFunctions } = require("./DOM-interaction");
-const utilityFunctions = require("./utilityFunctions");
+const dragAndDrop = require("./dragAndDrop");
 
 function gameLoop() {
 
@@ -16,12 +16,14 @@ function gameLoop() {
   // Generate the human player board
   myDOMFunc.renderBoard(myDOM.firstPlayerBoard);
   // myDOMFunc.positionPlayerFleet()
-  utilityFunctions(playerGameboard)
+  myDOMFunc.addShipButtonsFunctions()
+  dragAndDrop(playerGameboard)
 
   // Generate the computer ships
   const computerGameboard = player.createComputerPlayer("Computer");
   computerGameboard.generateComputerShipsCoordinates();
   computerGameboard.addShipsToBoard();
+
 
   // render the other board
   myDOMFunc.renderBoard(myDOM.secondPlayerBoard);

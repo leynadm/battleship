@@ -9,7 +9,12 @@ function getDOMElements() {
   const boatImgToDrag = document.querySelector(".boat-ship");
   const destroyerImgToDrag = document.querySelector(".destroyer-ship");
   const carrierImgToDrag = document.querySelector(".carrier-ship");
-  const patrolImgToDrag = document.querySelector(".patrol-ship")
+  const patrolImgToDrag = document.querySelector(".patrol-ship");
+
+  const destroyerShipBtn = document.querySelector(".destroyer-ship-btn");
+  const carrierShipBtn = document.querySelector(".carrier-ship-btn");
+  const patrolShipBtn = document.querySelector(".patrol-ship-btn");
+  const boatShipBtn = document.querySelector(".boat-ship-btn");
 
   return {
     startButton,
@@ -21,11 +26,58 @@ function getDOMElements() {
     boatImgToDrag,
     destroyerImgToDrag,
     carrierImgToDrag,
-    patrolImgToDrag
+    patrolImgToDrag,
+    destroyerShipBtn,
+    carrierShipBtn,
+    patrolShipBtn,
+    boatShipBtn,
   };
 }
 
 function myDOMFunctions() {
+  function addShipButtonsFunctions() {
+    const myDOM = getDOMElements();
+
+    const HORIZONTAL = "horizontal";
+    const VERTICAL = "vertical";
+
+    const changeShipPosition = (shipImg, shipBtn) => {
+      if (shipImg.getAttribute("data-ship-position") === HORIZONTAL) {
+        shipImg.setAttribute("data-ship-position", VERTICAL);
+        shipBtn.textContent = VERTICAL;
+        shipImg.classList.add("vertical");
+        shipImg.classList.remove("horizontal");
+      } else {
+        shipImg.setAttribute("data-ship-position", HORIZONTAL);
+        shipBtn.textContent = HORIZONTAL;
+        shipImg.classList.add("horizontal");
+        shipImg.classList.remove("vertical");
+      }
+    };
+
+    const addFunctionToButtons = () => {
+      const myDOM = getDOMElements();
+
+      myDOM.destroyerShipBtn.addEventListener("click", () => {
+        changeShipPosition(myDOM.destroyerImgToDrag, myDOM.destroyerShipBtn);
+      });
+
+      myDOM.carrierShipBtn.addEventListener("click", () => {
+        changeShipPosition(myDOM.carrierImgToDrag, myDOM.carrierShipBtn);
+      });
+
+      myDOM.patrolShipBtn.addEventListener("click", () => {
+        changeShipPosition(myDOM.patrolImgToDrag, myDOM.patrolShipBtn);
+      });
+
+      myDOM.boatShipBtn.addEventListener("click", () => {
+        changeShipPosition(myDOM.boatImgToDrag, myDOM.boatShipBtn);
+      });
+    };
+
+    addFunctionToButtons();
+  }
+
   function renderHitResult(hitCoordinate, hitResult, playerBoard) {
     const myDOM = getDOMElements();
 
@@ -114,6 +166,7 @@ function myDOMFunctions() {
     renderShipsOnBoard,
     addListeners,
     renderHitResult,
+    addShipButtonsFunctions,
   };
 }
 
