@@ -99,34 +99,73 @@ img[draggable=true] {
     height: 4rem;
 }
 
-.destroyer-ship{
+.destroyer-ship.horizontal{
     display: flex;
     background-color: aqua;
-    /* 
-    background-image: url("/src/images/destroyer.svg"); */
+    /*background-image: url("/src/images/destroyer.svg"); */
     background-size: cover;
     background-position: center;
 }
 
-.carrier-ship{
+.destroyer-ship.vertical{
+    display: flex;
+    background-color: aqua;
+    /*background-image: url("/src/images/destroyer.svg"); */
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+}
+
+.carrier-ship.horizontal{
+    display: flex;
     background-size: cover;
     background-position: center;
     background-color:blue
 }
 
-.patrol-ship{
+.carrier-ship.vertical{
     display: flex;
-    background-image: url("/src/images/patrol.svg");
     background-size: cover;
     background-position: center;
+    background-color:blue;
+    flex-direction: column;
 }
 
-.boat-ship{
+
+.patrol-ship.horizontal{
     display: flex;
-    background-image: url("/src/images/boat.svg");
+    /*background-image: url("/src/images/patrol.svg"); */
     background-size: cover;
     background-position: center;
+    background-color: orange;
 }
+
+.patrol-ship.vertical{
+    display: flex;
+    /*background-image: url("/src/images/patrol.svg"); */
+    background-size: cover;
+    background-position: center;
+    background-color: orange;
+    flex-direction: column;
+}
+
+.boat-ship.horizontal{
+    display: flex;
+    /*background-image: url("/src/images/boat.svg");*/
+    background-size: cover;
+    background-position: center;
+    background-color: cadetblue;
+}
+
+.boat-ship.vertical{
+    display: flex;
+    /*background-image: url("/src/images/boat.svg");*/
+    background-size: cover;
+    background-position: center;
+    background-color: cadetblue;
+    flex-direction: column;
+}
+
 
 .drop-zone-over-error{
     background-color: red;
