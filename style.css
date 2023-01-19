@@ -131,7 +131,6 @@ img[draggable=true] {
     flex-direction: column;
 }
 
-
 .patrol-ship.horizontal{
     display: flex;
     /*background-image: url("/src/images/patrol.svg"); */
