@@ -1,13 +1,73 @@
 // const gameLoop = require("./gameloop");
+const { includes } = require("lodash");
 const { getDOMElements, myDOMFunctions } = require("./DOM-interaction");
 const { gameLoop, createComputerPlayer } = require("./gameloop");
 
 function utilityFunctions(argument) {
-  function checkPositionValidity(x,y) {
+  function checkPositionValidity(x,y,length,position) {
 
+    console.log(argument.shipSquares)
 
+    let isValid = true;
 
-  }
+    const limitBottom = [
+      9,
+      19,
+      29,
+      39,
+      49,
+      59,
+      69,
+      79,
+      89,
+      90,
+      99,
+    ];
+
+    let result;
+
+    if(position === "horizontal"){
+      result = Array.from({length}, (_, i) => x + i * 10);
+    } else {
+      result = Array.from({length}, (_, i) => x + i * 1);
+    }
+
+    console.log(result)
+    /* Perform first check to see if the ship would exit the borders */
+    if(position==="horizontal"){
+    
+      for (let index = 0; index < result.length; index++) {
+        const element = result[index];
+        
+        if(element>99){
+          isValid = false
+        }
+
+      } 
+
+    } else {
+
+      for (let index = 0; index < result.length; index++) {
+        const element = result[index];
+        if(limitBottom.includes(element)&& index !== result.length-1){
+          isValid = false
+        }
+
+      }
+
+    }
+
+    for (let index = 0; index < result.length; index++) {
+      const element = result[index];
+      if(argument.shipSquares.some(square => square === element)){
+        console.log(element, " is present in shipSquares array")
+        isValid = false;
+        break;
+      }
+    }
+
+    return isValid
+}
 
   function positionPlayerFleet() {
     const myDOM = getDOMElements();
@@ -66,12 +126,11 @@ function utilityFunctions(argument) {
         } else if (shipPosition === "vertical") {
           secondCoordinate = firstCoordinateX + (shipLength - 1);
         }
-
-        const shipCoordinatesArr = []
-
-        if(!checkPositionValidity(firstCoordinateX,secondCoordinate)){
+         
+        if(!checkPositionValidity(firstCoordinateX,secondCoordinate,shipLength,shipPosition)){
           return
         }
+         
 
         if (secondCoordinate > 99) {
           element.classList.remove("drop-zone-over");
@@ -97,6 +156,8 @@ function utilityFunctions(argument) {
           argument.addShipsToBoard();
           myDOMFunc.renderShipsOnBoard(argument.shipSquares);
           console.log(argument.ships);
+          console.log(argument.shipSquares)
+
         }
       });
     });
