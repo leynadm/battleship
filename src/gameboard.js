@@ -161,7 +161,6 @@ function Gameboard(playerName) {
       "69",
       "79",
       "89",
-      "90",
       "99",
     ];
 
