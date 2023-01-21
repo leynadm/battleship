@@ -17,31 +17,21 @@ function gameLoop() {
   myDOMFunc.renderBoard(myDOM.firstPlayerBoard);
   // myDOMFunc.positionPlayerFleet()
   myDOMFunc.addShipButtonsFunctions()
-  dragAndDrop(playerGameboard)
-
-  // Generate the computer ships
-  const computerGameboard = player.createComputerPlayer("Computer");
-  computerGameboard.generateComputerShipsCoordinates();
-  computerGameboard.addShipsToBoard();
-
-
-  // render the other board
-  myDOMFunc.renderBoard(myDOM.secondPlayerBoard);
-  myDOMFunc.addListeners(
-    computerGameboard.receiveAttack,
-    playerGameboard.computerAttack
-  );
-
+ 
+  return {
+    playerGameboard
+  }
 
 }
 
- module.exports = gameLoop
-
-/*  
+function addBoardInteractivity(board){
+  dragAndDrop(board)
+}
+ 
 module.exports = {
   gameLoop,
-  createComputerPlayer,
+  addBoardInteractivity
 };
- */
+
  
  

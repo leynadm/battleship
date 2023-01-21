@@ -1,9 +1,12 @@
 // const gameLoop = require("./gameloop");
 const { includes } = require("lodash");
 const { getDOMElements, myDOMFunctions } = require("./DOM-interaction");
-const { gameLoop, createComputerPlayer } = require("./gameloop");
+const generateCPUPlayer = require("./generateCPUplayer");
 
 function utilityFunctions(argument) {
+
+  console.log(generateCPUPlayer)
+
   function checkPositionValidity(x,y,length,position) {
 
     console.log(argument.shipSquares)
@@ -157,6 +160,10 @@ function utilityFunctions(argument) {
           console.log(argument.ships);
           console.log(argument.shipSquares)
 
+          if(argument.ships.length === 4){
+            generateCPUPlayer(argument)
+          }
+            
         }
       });
     });

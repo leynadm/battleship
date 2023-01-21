@@ -122,7 +122,7 @@ function myDOMFunctions() {
         divCoordinate.setAttribute("div-coordinate-y", `${yCoordinate}`);
         divCoordinate.setAttribute("div-coordinate-x", `${xCoordinate}`);
 
-        divCoordinate.textContent = `"${yCoordinate}${xCoordinate}"`;
+        // divCoordinate.textContent = `"${yCoordinate}${xCoordinate}"`;
         playerBoard.appendChild(divCoordinate);
         yCoordinate += 1;
       }
