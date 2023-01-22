@@ -1,3 +1,5 @@
+const resetGame = require("./resetGame")
+
 function getDOMElements() {
   const startButton = document.querySelector(".start-button");
   const divCoordinates = document.querySelectorAll(".div-coordinate");
@@ -204,7 +206,6 @@ function myDOMFunctions() {
 
   function addListeners(callback1, callback2) {
     const DOMElements = getDOMElements();
-    console.log("entering the function again");
     DOMElements.secondPlayerDivs.forEach((element) => {
       element.addEventListener("click", () => {
         const elementX = element.getAttribute("div-coordinate-x");
@@ -220,7 +221,7 @@ function myDOMFunctions() {
 
     myDOM.restartBtn.addEventListener("click", () => {
       
-      
+      location.reload()
 
     });
   }

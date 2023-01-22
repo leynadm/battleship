@@ -6,10 +6,6 @@ function startGame() {
   addBoardInteractivity(playerBoard.playerGameboard);
 }
 
-function prepareGame(callback) {
-  const myDOM = getDOMElements();
-}
-
 startGame();
 
 module.exports = startGame;

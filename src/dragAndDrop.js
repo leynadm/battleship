@@ -7,8 +7,6 @@ function utilityFunctions(argument) {
 
   function checkPositionValidity(x,y,length,position) {
 
-    console.log(argument.shipSquares)
-
     let isValid = true;
 
     const limitBottom = [
@@ -32,7 +30,6 @@ function utilityFunctions(argument) {
       result = Array.from({length}, (_, i) => x + i * 1);
     }
 
-    console.log(result)
     /* Perform first check to see if the ship would exit the borders */
     if(position==="horizontal"){
     
@@ -60,7 +57,6 @@ function utilityFunctions(argument) {
     for (let index = 0; index < result.length; index++) {
       const element = result[index];
       if(argument.shipSquares.some(square => square === element)){
-        console.log(element, " is present in shipSquares array")
         isValid = false;
         break;
       }
