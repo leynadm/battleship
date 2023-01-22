@@ -23,8 +23,25 @@ module.exports = {
         },
       },
       {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+          
+        ]
+      },
+      {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'dist/images/',
+              publicPath: 'dist/images/'
+            }
+          }
+        ],
       },
     ],
   },

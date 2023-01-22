@@ -151,12 +151,12 @@ function myDOMFunctions() {
 
     if (hitResult === "Success") {
       const hitResultImg = document.createElement("img");
-      hitResultImg.src = "/src/images/bullet-hit.svg";
+      hitResultImg.src = "images/bullet-hit.svg";
       hitResultImg.classList.add("hit-result-img", "successful-hit-img");
       div.appendChild(hitResultImg);
     } else {
       const hitResultImg = document.createElement("img");
-      hitResultImg.src = "/src/images/bullet-missed.svg";
+      hitResultImg.src = "images/bullet-missed.svg";
       hitResultImg.classList.add("hit-result-img", "failed-hit-img");
       div.appendChild(hitResultImg);
     }
