@@ -359,6 +359,7 @@ img[draggable=true] {
 .modal-image{
     width: 100%;
     height: auto;
+    border-radius: 0.25rem;
 }
 
 p{
@@ -372,3 +373,92 @@ p{
 .modal.hide {
     display: none;
   }
+
+  /* The Modal (background) */
+.winner-modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.75); /* Black w/ opacity */
+}
+  
+
+.loser-modal{
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.75); /* Black w/ opacity */
+}
+
+.winner-modal.hide{
+    display: none;
+}
+
+.loser-modal.hide{
+    display: none;
+}
+
+.upper-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close{
+    font-size: 2rem;
+    color: red;
+}   
+
+
+/* CSS */
+.modal-close-btn {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.modal-close-btn:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+  color: red;
+}
+
+@media (min-width: 768px) {
+  .modal-close-btn {
+    padding: 0.25em 0.75em;
+  }
+}
+
+.player-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.winner-medal{
+    font-size: 2rem;
+}
