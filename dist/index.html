@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BATTLESHIP</title>
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,7 +17,7 @@
 
     <div class="buttons-menu">
 
-        <button type="button" class="restart-button">Restart Game</button>
+        <button type="button" class="restart-button menu-btn">Restart Game</button>
 
     </div>
 
@@ -26,7 +26,7 @@
         <div class="first-pane">
             <div class="first-player-battlefield">
 
-                <div class="first-player-name">Daniel</div>
+                <div class="first-player-name">Admiral...</div>
                 <div class="first-player-board"></div>
                 <div class="first-player-ships">
 
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="ship-button">
-                            <button type="button" class="destroyer-ship-btn">Horizontal</button>
+                            <button type="button" class="destroyer-ship-btn menu-btn">Horizontal</button>
                         </div>
 
                     </div>
@@ -53,7 +53,7 @@
                             <div class="ship-cell 4"></div>
                         </div>
                         <div class="ship-button">
-                            <button type="button" class="carrier-ship-btn">Horizontal</button>
+                            <button type="button" class="carrier-ship-btn menu-btn">Horizontal</button>
                         </div>
                     </div>
 
@@ -65,7 +65,7 @@
                             <div class="ship-cell"></div>
                         </div>
                         <div class="ship-button">
-                            <button type="button" class="patrol-ship-btn">Horizontal</button>
+                            <button type="button" class="patrol-ship-btn menu-btn">Horizontal</button>
                         </div>
                     </div>
 
@@ -75,7 +75,7 @@
                             <div class="ship-cell"></div>
                         </div>
                         <div class="ship-button">
-                            <button type="button" class="boat-ship-btn">Horizontal</button>
+                            <button type="button" class="boat-ship-btn menu-btn">Horizontal</button>
                         </div>
                     </div>
                     
@@ -95,6 +95,24 @@
 
         </div>
 
+    </div>
+
+
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            
+        
+            <p>Please add in your name and start the battle, Admiral...</p>
+            <img src="/src/images/general.png" class="modal-image" alt="military general">
+            <input type="text" class="name-input" required>
+            <div class="error-check"></div>
+            <button type="button" class="modal-submit-name-btn">Begin battle</button>
+        
+        
+        </div>
+      
     </div>
 
 </body>

@@ -1,5 +1,3 @@
-const startGame = require("./index");
-
 function getDOMElements() {
   const startButton = document.querySelector(".start-button");
   const divCoordinates = document.querySelectorAll(".div-coordinate");
@@ -8,6 +6,8 @@ function getDOMElements() {
   const secondPlayerBoard = document.querySelector(".second-player-board");
   const secondPlayerDivs =
     secondPlayerBoard.querySelectorAll(".div-coordinate");
+
+  const firstPlayerName = document.querySelector(".first-player-name")
   const boatImgToDrag = document.querySelector(".boat-ship");
   const destroyerImgToDrag = document.querySelector(".destroyer-ship");
   const carrierImgToDrag = document.querySelector(".carrier-ship");
@@ -27,11 +27,20 @@ function getDOMElements() {
   
   const restartBtn = document.querySelector(".restart-button")
 
+  const beginBattleBtn = document.querySelector(".modal-submit-name-btn")
+
+  const nameInput = document.querySelector(".name-input")
+
+  const errorCheckField = document.querySelector('.error-check')
+
+  const startGameModal = document.querySelector(".modal") 
+
   return {
     startButton,
     divCoordinates,
     firstPlayerBoard,
     firstPlayerDivs,
+    firstPlayerName,
     secondPlayerBoard,
     secondPlayerDivs,
     boatImgToDrag,
@@ -47,7 +56,11 @@ function getDOMElements() {
     carrierShipSpace,
     patrolShipSpace,
     boatShipSpace, 
-    restartBtn
+    restartBtn,
+    beginBattleBtn,
+    nameInput,
+    errorCheckField,
+    startGameModal
   };
 }
 
@@ -195,8 +208,29 @@ function myDOMFunctions() {
     myDOM.restartBtn.addEventListener('click',()=>{
 
       location.reload();
-      
+
     })
+
+
+
+  }
+
+  function prepareGame(){
+
+    const myDOM = getDOMElements();
+
+    myDOM.beginBattleBtn.addEventListener('click',()=>{
+
+      if(myDOM.nameInput.value===""){
+        myDOM.errorCheckField.textContent = "The fleet needs to know your name"
+      } else {
+        myDOM.firstPlayerName.textContent = `Admiral ${  myDOM.nameInput.value}`
+        myDOM.startGameModal.classList.add("hide")
+      }
+
+    })
+
+
 
   }
 
@@ -207,7 +241,8 @@ function myDOMFunctions() {
     renderHitResult,
     addShipButtonsFunctions,
     addCPUBoardInfo,
-    addMenuFunctions
+    addMenuFunctions,
+    prepareGame
   };
 }
 

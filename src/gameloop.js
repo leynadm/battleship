@@ -13,7 +13,8 @@ function gameLoop() {
   const myDOMFunc = myDOMFunctions();
 
   myDOMFunc.addMenuFunctions()
-
+  myDOMFunc.prepareGame()
+  
   // Generate the human player board
   myDOMFunc.renderBoard(myDOM.firstPlayerBoard);
   // myDOMFunc.positionPlayerFleet()
