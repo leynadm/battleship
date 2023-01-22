@@ -28,7 +28,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
     font-family: 'Rubik Dirt', cursive;
-    background-image: url("/src/images/naval-battle.png");
+    background-image: url("images/naval-battle.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -56,14 +56,14 @@ table {
 .first-player-board{
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    background-image: url("/src/images/ocean.png");
+    background-image: url("images/ocean.png");
     background-size: cover;
 }
 
 .second-player-board{
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    background-image: url("/src/images/ocean.png");
+    background-image: url("images/ocean.png");
     background-size: cover;
 }
 
@@ -175,7 +175,7 @@ img[draggable=true] {
 
 .destroyer-ship.horizontal{
     display: flex;
-    background-image: url("/src/images/destroyer.svg");
+    background-image: url("images/destroyer.svg");
     background-size: cover;
     background-position: center;
     color: wheat;
@@ -184,7 +184,7 @@ img[draggable=true] {
 
 .destroyer-ship.vertical{
     display: flex;
-    background-image: url("/src/images/destroyer-vertical.svg");
+    background-image: url("images/destroyer-vertical.svg");
     background-size: cover;
     background-position: center;
     flex-direction: column;
@@ -196,7 +196,7 @@ img[draggable=true] {
     display: flex;
     background-size: cover;
     background-position: center;
-    background-image: url("/src/images/carrier.svg");
+    background-image: url("images/carrier.svg");
     color: wheat;
 }
 
@@ -205,32 +205,32 @@ img[draggable=true] {
     background-size: cover;
     background-position: center;
     flex-direction: column;
-    background-image: url("/src/images/carrier-vertical.svg");
+    background-image: url("images/carrier-vertical.svg");
     color: wheat;
 }
 
 .patrol-ship.horizontal{
     display: flex;
-    /*background-image: url("/src/images/patrol.svg"); */
+    /*background-image: url("images/patrol.svg"); */
     background-size: cover;
     background-position: center;
-    background-image: url("/src/images/patrol.svg");
+    background-image: url("images/patrol.svg");
     color: wheat;
 }
 
 .patrol-ship.vertical{
     display: flex;
-    /*background-image: url("/src/images/patrol.svg"); */
+    /*background-image: url("images/patrol.svg"); */
     background-size: cover;
     background-position: center;
     flex-direction: column;
-    background-image: url("/src/images/patrol-vertical.svg");
+    background-image: url("images/patrol-vertical.svg");
     color: wheat;
 }
 
 .boat-ship.horizontal{
     display: flex;
-    background-image: url("/src/images/boat.svg");
+    background-image: url("images/boat.svg");
     background-size: cover;
     background-position: center;
     color: wheat;
@@ -238,7 +238,7 @@ img[draggable=true] {
 
 .boat-ship.vertical{
     display: flex;
-    background-image: url("/src/images/boat-vertical.svg");
+    background-image: url("images/boat-vertical.svg");
     background-size: cover;
     background-position: center;
     flex-direction: column;
