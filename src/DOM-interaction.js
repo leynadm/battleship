@@ -1,3 +1,5 @@
+const startGame = require("./index");
+
 function getDOMElements() {
   const startButton = document.querySelector(".start-button");
   const divCoordinates = document.querySelectorAll(".div-coordinate");
@@ -16,6 +18,15 @@ function getDOMElements() {
   const patrolShipBtn = document.querySelector(".patrol-ship-btn");
   const boatShipBtn = document.querySelector(".boat-ship-btn");
 
+  const secondPlayerName = document.querySelector(".second-player-name")
+
+  const destroyerShipSpace = document.querySelector(".ship-container.destroyer")
+  const carrierShipSpace = document.querySelector(".ship-container.carrier")
+  const patrolShipSpace = document.querySelector(".ship-container.patrol")
+  const boatShipSpace = document.querySelector(".ship-container.boat")
+  
+  const restartBtn = document.querySelector(".restart-button")
+
   return {
     startButton,
     divCoordinates,
@@ -31,10 +42,25 @@ function getDOMElements() {
     carrierShipBtn,
     patrolShipBtn,
     boatShipBtn,
+    secondPlayerName,
+    destroyerShipSpace,
+    carrierShipSpace,
+    patrolShipSpace,
+    boatShipSpace, 
+    restartBtn
   };
 }
 
 function myDOMFunctions() {
+
+  function addCPUBoardInfo(){
+
+    const myDOM = getDOMElements();
+
+    myDOM.secondPlayerName.textContent = "Computer"
+
+  }
+
   function addShipButtonsFunctions() {
     const myDOM = getDOMElements();
 
@@ -73,6 +99,7 @@ function myDOMFunctions() {
       myDOM.boatShipBtn.addEventListener("click", () => {
         changeShipPosition(myDOM.boatImgToDrag, myDOM.boatShipBtn);
       });
+
     };
 
     addFunctionToButtons();
@@ -161,12 +188,26 @@ function myDOMFunctions() {
     });
   }
 
+  function addMenuFunctions(){
+
+    const myDOM = getDOMElements();
+
+    myDOM.restartBtn.addEventListener('click',()=>{
+
+      location.reload();
+      
+    })
+
+  }
+
   return {
     renderBoard,
     renderShipsOnBoard,
     addListeners,
     renderHitResult,
     addShipButtonsFunctions,
+    addCPUBoardInfo,
+    addMenuFunctions
   };
 }
 

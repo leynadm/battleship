@@ -1,18 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap');
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+    font-family: 'Rubik Dirt', cursive;
+    background-image: url("/src/images/naval-battle.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
 
 
 .first-player-board{
     display: grid;
     grid-template-columns: repeat(10, 1fr);
+    background-image: url("/src/images/ocean.png");
+    background-size: cover;
 }
 
 .second-player-board{
     display: grid;
     grid-template-columns: repeat(10, 1fr);
+    background-image: url("/src/images/ocean.png");
+    background-size: cover;
 }
 
 .page-header{
     display: flex;
     justify-content: center;
+    font-size: 4rem;
 }
 
 .buttons-menu{
@@ -21,13 +79,29 @@
 }
 
 .div-coordinate{
-    border: black 1px solid;
+    border: white 1px dashed;
     width: 4rem;
     height: 4rem;
 }
 .first-player-ships{
     display: flex;
     flex-direction: column;
+    background-color: white;
+    opacity: 0.6;
+}
+
+.first-player-name{
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+    font-size: 3rem;
+}
+
+.second-player-name{
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+    font-size: 3rem;
 }
 
 img {
@@ -40,25 +114,14 @@ img {
     background-color: transparent;
 }
 
-/*  
-#boat{
-    transform: scaleX(2);    
-}
- 
-#patrol{
-    transform: scaleX(3);
+.successful-hit-img{
+    background-color: red;
 }
 
-#carrier{
-    transform: scaleX(4);
+.failed-hit-img{
+    background-color: lightblue;
 }
 
-#destroyer{
-    transform: scaleX(5);
-}
-
- */
- 
 img[draggable=true]:active {
     opacity: 0.5; /* make element 50% transparent while it is being dragged */
     background-color: transparent;
@@ -79,9 +142,17 @@ img[draggable=true] {
     color: white;
 }
 
+.first-pane{
+    margin: 1rem;
+}
+
+.second-pane{
+    margin: 1rem;
+}
+
 .wrapper{
     display: flex;
-    justify-content: space-around;
+    justify-content:center;
 }
 
 .ship-container{
@@ -101,34 +172,38 @@ img[draggable=true] {
 
 .destroyer-ship.horizontal{
     display: flex;
-    background-color: aqua;
-    /*background-image: url("/src/images/destroyer.svg"); */
+    background-image: url("/src/images/destroyer.svg");
     background-size: cover;
     background-position: center;
+    color: wheat;
 }
+
 
 .destroyer-ship.vertical{
     display: flex;
-    background-color: aqua;
-    /*background-image: url("/src/images/destroyer.svg"); */
+    background-image: url("/src/images/destroyer-vertical.svg");
     background-size: cover;
     background-position: center;
     flex-direction: column;
+    color: wheat;
 }
+
 
 .carrier-ship.horizontal{
     display: flex;
     background-size: cover;
     background-position: center;
-    background-color:blue
+    background-image: url("/src/images/carrier.svg");
+    color: wheat;
 }
 
 .carrier-ship.vertical{
     display: flex;
     background-size: cover;
     background-position: center;
-    background-color:blue;
     flex-direction: column;
+    background-image: url("/src/images/carrier-vertical.svg");
+    color: wheat;
 }
 
 .patrol-ship.horizontal{
@@ -136,7 +211,8 @@ img[draggable=true] {
     /*background-image: url("/src/images/patrol.svg"); */
     background-size: cover;
     background-position: center;
-    background-color: orange;
+    background-image: url("/src/images/patrol.svg");
+    color: wheat;
 }
 
 .patrol-ship.vertical{
@@ -144,25 +220,26 @@ img[draggable=true] {
     /*background-image: url("/src/images/patrol.svg"); */
     background-size: cover;
     background-position: center;
-    background-color: orange;
     flex-direction: column;
+    background-image: url("/src/images/patrol-vertical.svg");
+    color: wheat;
 }
 
 .boat-ship.horizontal{
     display: flex;
-    /*background-image: url("/src/images/boat.svg");*/
+    background-image: url("/src/images/boat.svg");
     background-size: cover;
     background-position: center;
-    background-color: cadetblue;
+    color: wheat;
 }
 
 .boat-ship.vertical{
     display: flex;
-    /*background-image: url("/src/images/boat.svg");*/
+    background-image: url("/src/images/boat-vertical.svg");
     background-size: cover;
     background-position: center;
-    background-color: cadetblue;
     flex-direction: column;
+    color: wheat;
 }
 
 
@@ -175,4 +252,36 @@ img[draggable=true] {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+
+/* CSS */
+.restart-button {
+    margin: 1rem;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    border: 3px solid;
+    padding: 0.25em 0.5em;
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.restart-button:active {
+    box-shadow: 0px 0px 0px 0px;
+    top: 5px;
+    left: 5px;
+}
+
+@media (min-width: 768px) {
+  .restart-button {
+    padding: 0.25em 0.75em;
+  }
 }

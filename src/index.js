@@ -1,12 +1,17 @@
-const Ship = require("./ship");
-const Gameboard = require("./gameboard");
-const Player = require("./player");
 const {gameLoop,addBoardInteractivity} = require("./gameloop");
-// const { gameLoop, createComputerPlayer } = require("./gameloop");
+
+function startGame(){
+
+    const playerBoard = gameLoop();
+
+    addBoardInteractivity(playerBoard.playerGameboard)
+
+}
+
+startGame()
+
+module.exports = startGame;
 
 
-const playerBoard = gameLoop();
 
-addBoardInteractivity(playerBoard.playerGameboard)
-console.log(playerBoard.playerGameboard)
 

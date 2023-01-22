@@ -146,7 +146,7 @@ function utilityFunctions(argument) {
           e.preventDefault();
           element.classList.remove("drop-zone-over-error");
         } else {
-          element.appendChild(droppedElement);
+          // element.appendChild(droppedElement);
           element.classList.remove("drop-zone-over");
           argument.placeShip(
             shipLength,
@@ -156,12 +156,14 @@ function utilityFunctions(argument) {
             shipType
           );
           argument.addShipsToBoard();
+          
           myDOMFunc.renderShipsOnBoard(argument.shipSquares);
-          console.log(argument.ships);
-          console.log(argument.shipSquares)
+            console.log(droppedElementId)
+          removeShipSpace(droppedElementId)
 
           if(argument.ships.length === 4){
             generateCPUPlayer(argument)
+            myDOMFunc.addCPUBoardInfo()
           }
             
         }
@@ -170,6 +172,28 @@ function utilityFunctions(argument) {
   }
 
   positionPlayerFleet();
+
+  function removeShipSpace(ship) {
+    const myDOM = getDOMElements();
+  
+    switch (ship) {
+      case "destroyer-ship":
+        myDOM.destroyerShipSpace.remove();
+        break;
+      case "carrier-ship":
+        myDOM.carrierShipSpace.remove();
+        break;
+      case "patrol-ship":
+        myDOM.patrolShipSpace.remove();
+        break;
+      case "boat-ship":
+        myDOM.boatShipSpace.remove();
+        break;
+      default:
+        // Handle the case where the ship is not recognized
+        break;
+    }
+  }
 
   return {
     positionPlayerFleet,
