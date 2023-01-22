@@ -29,7 +29,8 @@ function gameLoop() {
 function addBoardInteractivity(board){
   dragAndDrop(board)
 }
- 
+
+
 module.exports = {
   gameLoop,
   addBoardInteractivity

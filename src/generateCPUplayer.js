@@ -2,6 +2,7 @@ const Player = require("./player");
 const { getDOMElements, myDOMFunctions } = require("./DOM-interaction");
 
 function generateCPUPlayer(board) {
+  
   const player = Player();
 
   const myDOM = getDOMElements();
@@ -15,6 +16,11 @@ function generateCPUPlayer(board) {
   // render the other board
   myDOMFunc.renderBoard(myDOM.secondPlayerBoard);
   myDOMFunc.addListeners(computerGameboard.receiveAttack, board.computerAttack);
+
+  return{
+    computerGameboard
+  }
+
 }
 
 module.exports = generateCPUPlayer

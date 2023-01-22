@@ -7,7 +7,7 @@ function getDOMElements() {
   const secondPlayerDivs =
     secondPlayerBoard.querySelectorAll(".div-coordinate");
 
-  const firstPlayerName = document.querySelector(".first-player-name")
+  const firstPlayerName = document.querySelector(".first-player-name");
   const boatImgToDrag = document.querySelector(".boat-ship");
   const destroyerImgToDrag = document.querySelector(".destroyer-ship");
   const carrierImgToDrag = document.querySelector(".carrier-ship");
@@ -18,22 +18,34 @@ function getDOMElements() {
   const patrolShipBtn = document.querySelector(".patrol-ship-btn");
   const boatShipBtn = document.querySelector(".boat-ship-btn");
 
-  const secondPlayerName = document.querySelector(".second-player-name")
+  const secondPlayerName = document.querySelector(".second-player-name");
 
-  const destroyerShipSpace = document.querySelector(".ship-container.destroyer")
-  const carrierShipSpace = document.querySelector(".ship-container.carrier")
-  const patrolShipSpace = document.querySelector(".ship-container.patrol")
-  const boatShipSpace = document.querySelector(".ship-container.boat")
-  
-  const restartBtn = document.querySelector(".restart-button")
+  const destroyerShipSpace = document.querySelector(
+    ".ship-container.destroyer"
+  );
+  const carrierShipSpace = document.querySelector(".ship-container.carrier");
+  const patrolShipSpace = document.querySelector(".ship-container.patrol");
+  const boatShipSpace = document.querySelector(".ship-container.boat");
 
-  const beginBattleBtn = document.querySelector(".modal-submit-name-btn")
+  const restartBtn = document.querySelector(".restart-button");
 
-  const nameInput = document.querySelector(".name-input")
+  const beginBattleBtn = document.querySelector(".modal-submit-name-btn");
 
-  const errorCheckField = document.querySelector('.error-check')
+  const nameInput = document.querySelector(".name-input");
 
-  const startGameModal = document.querySelector(".modal") 
+  const errorCheckField = document.querySelector(".error-check");
+
+  const startGameModal = document.querySelector(".modal");
+
+  const winnerGameModal = document.querySelector(".winner-modal");
+
+  const loserGameModal = document.querySelector(".loser-modal");
+
+  const modalWinnerBtn = document.querySelector(".modal-winner-btn");
+  const modalLoserBtn = document.querySelector(".modal-loser-btn");
+
+  const firstPlayerMedal = document.querySelector(".first-player.winner-medal");
+  const secondPlayerMedal = document.querySelector(".second-player.winner-medal")
 
   return {
     startButton,
@@ -55,23 +67,26 @@ function getDOMElements() {
     destroyerShipSpace,
     carrierShipSpace,
     patrolShipSpace,
-    boatShipSpace, 
+    boatShipSpace,
     restartBtn,
     beginBattleBtn,
     nameInput,
     errorCheckField,
-    startGameModal
+    startGameModal,
+    winnerGameModal,
+    loserGameModal,
+    modalWinnerBtn,
+    modalLoserBtn,
+    firstPlayerMedal,
+    secondPlayerMedal
   };
 }
 
 function myDOMFunctions() {
-
-  function addCPUBoardInfo(){
-
+  function addCPUBoardInfo() {
     const myDOM = getDOMElements();
 
-    myDOM.secondPlayerName.textContent = "Computer"
-
+    myDOM.secondPlayerName.textContent = "Computer";
   }
 
   function addShipButtonsFunctions() {
@@ -112,7 +127,6 @@ function myDOMFunctions() {
       myDOM.boatShipBtn.addEventListener("click", () => {
         changeShipPosition(myDOM.boatImgToDrag, myDOM.boatShipBtn);
       });
-
     };
 
     addFunctionToButtons();
@@ -201,38 +215,94 @@ function myDOMFunctions() {
     });
   }
 
-  function addMenuFunctions(){
-
+  function addMenuFunctions() {
     const myDOM = getDOMElements();
 
-    myDOM.restartBtn.addEventListener('click',()=>{
+    myDOM.restartBtn.addEventListener("click", () => {
+      
+      
 
-      location.reload();
-
-    })
-
-
-
+    });
   }
 
-  function prepareGame(){
-
+  function prepareGame() {
     const myDOM = getDOMElements();
 
-    myDOM.beginBattleBtn.addEventListener('click',()=>{
-
-      if(myDOM.nameInput.value===""){
-        myDOM.errorCheckField.textContent = "The fleet needs to know your name"
+    myDOM.beginBattleBtn.addEventListener("click", () => {
+      if (myDOM.nameInput.value === "") {
+        myDOM.errorCheckField.textContent = "The fleet needs to know your name";
       } else {
-        myDOM.firstPlayerName.textContent = `Admiral ${  myDOM.nameInput.value}`
-        myDOM.startGameModal.classList.add("hide")
+        myDOM.firstPlayerName.textContent = `Admiral ${myDOM.nameInput.value}`;
+        myDOM.startGameModal.classList.add("hide");
       }
+    });
 
-    })
+    function closeWinnerModal(){
 
+      const myDOM = getDOMElements()
+  
+      myDOM.modalWinnerBtn.addEventListener('click', ()=>{
+  
+        myDOM.winnerGameModal.classList.add("hide")
+  
+      });
+  
+    }
+  
+    function closeLoserModal(){
+  
+      const myDOM = getDOMElements()
+  
+      myDOM.modalLoserBtn.addEventListener('click', ()=>{
+  
+        myDOM.loserGameModal.classList.add("hide")
+  
+      });
+  
+    }
+  
+    closeWinnerModal()
 
+    closeLoserModal()
 
   }
+
+  function showWinnerModal() {
+    const myDOM = getDOMElements();
+
+    myDOM.winnerGameModal.classList.remove("hide");
+  }
+
+  function showLoserModal() {
+    const myDOM = getDOMElements();
+
+    myDOM.loserGameModal.classList.remove("hide");
+  }
+
+  function removeListeners(){
+
+    const myDOM = getDOMElements();
+
+    myDOM.secondPlayerDivs.forEach((element) => {
+
+        const newElement = element.cloneNode(true);
+
+        element.parentNode.replaceChild(newElement,element)
+      });
+  }
+
+  function addMedalToWinningPlayer(player){
+
+    const myDOM = getDOMElements()
+
+    if(player === "Computer"){
+      myDOM.firstPlayerMedal.textContent = "🥇"
+    } else {
+      myDOM.secondPlayerMedal.textContent = "🥇"
+    }
+
+  }
+
 
   return {
     renderBoard,
@@ -242,7 +312,11 @@ function myDOMFunctions() {
     addShipButtonsFunctions,
     addCPUBoardInfo,
     addMenuFunctions,
-    prepareGame
+    prepareGame,
+    showWinnerModal,
+    showLoserModal,
+    removeListeners,
+    addMedalToWinningPlayer
   };
 }
 

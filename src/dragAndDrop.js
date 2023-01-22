@@ -5,8 +5,6 @@ const generateCPUPlayer = require("./generateCPUplayer");
 
 function utilityFunctions(argument) {
 
-  console.log(generateCPUPlayer)
-
   function checkPositionValidity(x,y,length,position) {
 
     console.log(argument.shipSquares)
@@ -133,7 +131,6 @@ function utilityFunctions(argument) {
           return
         }
          
-
         if (secondCoordinate > 99) {
           element.classList.remove("drop-zone-over");
           element.classList.add("drop-zone-over-error");
@@ -158,14 +155,14 @@ function utilityFunctions(argument) {
           argument.addShipsToBoard();
           
           myDOMFunc.renderShipsOnBoard(argument.shipSquares);
-            console.log(droppedElementId)
           removeShipSpace(droppedElementId)
 
           if(argument.ships.length === 4){
             generateCPUPlayer(argument)
             myDOMFunc.addCPUBoardInfo()
-          }
             
+          }
+
         }
       });
     });

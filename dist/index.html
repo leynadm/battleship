@@ -24,9 +24,14 @@
     <div class="wrapper">
 
         <div class="first-pane">
+
             <div class="first-player-battlefield">
 
-                <div class="first-player-name">Admiral...</div>
+                <div class="player-details">
+                    <div class="first-player-name">Admiral...</div>
+                    <div class="first-player winner-medal"></div>
+                </div>
+                
                 <div class="first-player-board"></div>
                 <div class="first-player-ships">
 
@@ -88,7 +93,11 @@
         <div class="second-pane">
 
             <div class="second-player-battlefield">
-                <div class="second-player-name"></div>
+
+                <div class="player-details">
+                    <div class="second-player-name"></div>
+                    <div class="second-player winner-medal"></div>
+                </div>
                 <div class="second-player-board"></div>
                 <div class="second-player ships"></div>
             </div>
@@ -102,18 +111,53 @@
 
         <!-- Modal content -->
         <div class="modal-content">
-            
         
             <p>Please add in your name and start the battle, Admiral...</p>
             <img src="/src/images/general.png" class="modal-image" alt="military general">
-            <input type="text" class="name-input" required>
+            <input type="text" class="name-input" required maxlength="10">
             <div class="error-check"></div>
             <button type="button" class="modal-submit-name-btn">Begin battle</button>
-        
         
         </div>
       
     </div>
+
+    <div id="winner-modal" class="winner-modal hide">
+        
+        <!-- Modal content -->
+        <div class="modal-content winner">
+
+            <div class="upper-row">
+
+                <p>Admiral, we won, but at what cost...!</p>
+                <button type="button" class="modal-close-btn modal-winner-btn">X</button>
+                                    
+            </div>
+
+            <img src="/src/images/won.png" class="modal-image" alt="military general">
+        
+        </div>
+      
+    </div>
+
+    <div id="loser-modal" class="loser-modal hide">
+        
+        <!-- Modal content -->
+        <div class="modal-content loser">
+
+            <div class="upper-row">
+
+                <p>You lost, and an Admiral goes down with his ship...</p>
+                <button type="button" class="modal-close-btn modal-loser-btn">X</button>
+                
+            </div>
+            
+            <img src="/src/images/lost.png" class="modal-image" alt="military general">
+      
+        </div>
+      
+    </div>
+
 
 </body>
 

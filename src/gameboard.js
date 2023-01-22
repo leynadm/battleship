@@ -27,8 +27,8 @@ function Gameboard(playerName) {
   }
 
   function checkSunkShips() {
-    console.log(ships)
 
+    const myDOMFunc = myDOMFunctions()
     let sunkShips = 0;
     ships.forEach((ship) => {
       if (ship.sunk) {
@@ -36,15 +36,26 @@ function Gameboard(playerName) {
       }
     });
 
-    if(sunkShips === 4){
-      console.log('Game over!')
-    } else {
-      console.log(`Ships sunk until now: ${  sunkShips}`)
+    if (sunkShips === 4) {
+
+      const myDOMFunc = myDOMFunctions();
+
+      if (player === "Computer") {
+        myDOMFunc.showWinnerModal();
+      } else {
+        myDOMFunc.showLoserModal();
+      }
+
+      myDOMFunc.addMedalToWinningPlayer(player)
+
+      myDOMFunc.removeListeners()
+
     }
 
   }
 
   function receiveAttack(x, y, callback) {
+
     if (functionInProgress) {
       return;
     }
@@ -92,6 +103,7 @@ function Gameboard(playerName) {
   }
 
   function computerAttack() {
+
     let ComputerHitXCoordinate;
     let ComputerHitYCoordinate;
 
@@ -116,8 +128,8 @@ function Gameboard(playerName) {
     functionInProgress = false;
 
     receiveAttack(ComputerHitXCoordinate, ComputerHitYCoordinate, null);
-  
-    checkSunkShips()
+
+    checkSunkShips();
   }
 
   function addShipsToBoard() {
